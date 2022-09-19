@@ -8,5 +8,5 @@ import com.example.demo.model.Album;
 import com.example.demo.model.User;
 
 public interface AlbumRepository extends JpaRepository<Album, Long>{
-	Optional<Album> findById(Long id);
+	
 }

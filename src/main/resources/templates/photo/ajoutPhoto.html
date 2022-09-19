@@ -17,26 +17,35 @@
 			    <label for="date" class="form-label">Date</label>
 			    <input type="date" class="form-control" id="date" name="date">
 			  </div>
-			  <div class="form-floating">
-			  	<label for="floatingTextarea">Description</label>
-				  <textarea class="form-control" id="floatingTextarea" name="description"></textarea>
+			  <div class="mb-3">
+				  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+				  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
 			  </div>
 			  <div class="mb-3 form-check">
 			    <input type="checkbox" class="form-check-input" id="publique" name="publique">
 			    <label class="form-check-label" for="publique">Photo publique</label>
 			  </div>
-			  <select class="form-select">
-				  <option selected>Choisisez un album</option>
-				  <option value="1">One</option>
-				  <option value="2">Two</option>
-				  <option value="3">Three</option>
-				</select>
+			  <div class="mb-3">
+				  <select class="form-select">
+					  <option selected>Choisisez un album</option>
+					  <option value="1">One</option>
+					  <option value="2">Two</option>
+					  <option value="3">Three</option>
+					</select>
+				</div>
+				<div class="mb-3">
 				<select class="form-select" multiple >
 				  <option selected>Choisisez une ou plusieurs ctégories</option>
 				  <option value="1">One</option>
 				  <option value="2">Two</option>
 				  <option value="3">Three</option>
 				</select>
+				</div>
+				<div class="mb-3">
+					<input type="hidden" class="form-check-input" name="longitude" value="">
+					<input type="hidden" class="form-check-input" name="latitude" value="">
+					
+				</div>
 			  <button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>

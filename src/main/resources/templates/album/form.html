@@ -5,11 +5,10 @@
    			<div class="col">
    				<div class=p-3>
     				<h1>Nouvel album</h1>
-    				<form method="post" th:object="${album}">
+    				<form method="post" th:action="@{ajout-album}" th:object="${album}">
 						<div class="mb-3">
 							<label for="nom" class="form-label">nom de l'album</label>
-							<input type="text" class="form-control" id="nom" th:field="*{nom}">
-							<input type="hidden" id="user" th:value="${#authentication.getPrincipal().getIdUser()}" th:field="*{user.id}">
+							<input type="text" class="form-control" id="nom" name="nom">
 						</div>
 						<button type="submit" class="btn btn-primary">Ajouter</button>
 					</form>				
