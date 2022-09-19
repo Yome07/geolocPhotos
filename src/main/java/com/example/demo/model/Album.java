@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Album {
@@ -12,6 +13,9 @@ public class Album {
 	private Long id;
 	
 	private String nom;
+	
+	@ManyToOne
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -28,6 +32,16 @@ public class Album {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 	
 	
 }

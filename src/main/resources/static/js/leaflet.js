@@ -33,7 +33,7 @@ var villes = {
         //     marker.bindPopup(popupContent);
         //     markerClusters.addLayer(marker); // Nous ajoutons le marqueur aux groupes
         // }
-        macarte.addLayer(markerClusters);
+       macarte.addLayer(markerClusters);
 
         var popup = L.popup()
 		.setLatLng([lat, lon])

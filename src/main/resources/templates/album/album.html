@@ -9,6 +9,7 @@
 						<div class="mb-3">
 							<label for="nom" class="form-label">nom de l'album</label>
 							<input type="text" class="form-control" id="nom" th:field="*{nom}">
+							<input type="hidden" id="user" th:value="${#authentication.getPrincipal().getIdUser()}" th:field="*{user.id}">
 						</div>
 						<button type="submit" class="btn btn-primary">Ajouter</button>
 					</form>				

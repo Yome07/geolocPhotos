@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Photo {
@@ -26,6 +27,12 @@ public class Photo {
 	private float latitude;
 	
 	private float longitude;
+	
+	@ManyToOne
+	private User user;
+	
+	@ManyToOne
+	private Album album;
 
 	public Long getId() {
 		return id;
@@ -89,6 +96,22 @@ public class Photo {
 
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 	
 	

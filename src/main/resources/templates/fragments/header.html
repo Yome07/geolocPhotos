@@ -34,7 +34,7 @@
                 <a class="nav-link" href="#">Catégorie</a>
               </li>
               <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="#">Ajouter une photo</a>
+                <a class="nav-link" th:href="@{/ajoutPhoto}">Ajouter une photo</a>
               </li>
               <li sec:authorize="isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="#">Modifier/Supprimer une photo</a>

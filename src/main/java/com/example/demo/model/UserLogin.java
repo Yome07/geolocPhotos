@@ -58,5 +58,9 @@ public class UserLogin implements UserDetails {
 	public String getFullName() {
 		return user.getNom() + " " + user.getPrenom();
 	}
+	
+	public Long getIdUser() {
+		return user.getId();
+	}
 
 }
