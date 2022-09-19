@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html th:fragment="header" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,15 +28,15 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Accueil</a>
+                <a class="nav-link active" th:href="@{/}">Accueil</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Catégorie</a>
               </li>
-              <li class="nav-item">
+              <li sec:authorize="isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="#">Ajouter</a>
               </li>
-              <li class="nav-item">
+              <li sec:authorize="isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="#">Modifier/Supprimer</a>
               </li>
               <li class="nav-item">
@@ -45,10 +45,14 @@
               
             </ul>
             <span class="navbar-text">
-              Inscription/Connexion
+            	<span sec:authorize="isAuthenticated()"> 
+            		<span th:text="${#authentication.getPrincipal().getFullName()}" > </span>
+            		<a class="btn btn-danger" th:href="@{/logout}">logout</a>
+				</span> 
+				<span sec:authorize="isAnonymous()">
+              		<a class="nav-link" th:href="@{/login}">Inscription/Connexion</a>
+              	</span>
             </span>
           </div>
         </div>
     </nav>
-    
-      <div id="map">

@@ -54,5 +54,9 @@ public class UserLogin implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public String getFullName() {
+		return user.getNom() + " " + user.getPrenom();
+	}
 
 }

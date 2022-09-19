@@ -40,19 +40,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         auth.authenticationProvider(authenticationProvider());
     }
 	
+	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
         .csrf().disable()
         .authorizeRequests()
+        	
             .antMatchers("/users").authenticated()
             .anyRequest().permitAll()
             .and()
             .formLogin()
             .loginPage("/login")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/list")
-                .failureUrl("/")
+                .defaultSuccessUrl("/")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

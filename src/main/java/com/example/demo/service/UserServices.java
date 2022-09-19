@@ -8,12 +8,16 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserServices {
 	
 	@Autowired
 	private UserRepository userRepository;
 	
-	public void ajoutUser(User user) {
+	public User findByEmail(String email) {
+        return  userRepository.findByEmail(email);
+    }
+	
+	public void createUser(User user) {
 		
 		BCryptPasswordEncoder encodePwd = new BCryptPasswordEncoder();
 		user.setPassword(encodePwd.encode(user.getPassword()));
