@@ -1,0 +1,25 @@
+<div th:insert="fragments/header::header"></div>
+    
+	<div class=container>
+   		<div class="row gx-5">
+   			<div class="col">
+   				<div class=p-3>
+    				<h1>Nouvel album</h1>
+    				<form method="post" th:object="${album}">
+						<div class="mb-3">
+							<label for="nom" class="form-label">nom de l'album</label>
+							<input type="text" class="form-control" id="nom" th:field="*{nom}">
+						</div>
+						<button type="submit" class="btn btn-primary">Ajouter</button>
+					</form>				
+				</div>
+   			</div>
+   		</div>
+   	</div>
+   	<div id="map"></div>
+ 
+    <!-- Fichiers Javascript -->
+    <!-- <script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js'></script> -->
+    <script type='text/javascript'th:src="@{js/initLeaflet.js}"></script>
+</body>
+</html>
