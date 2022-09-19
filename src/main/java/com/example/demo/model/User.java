@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,12 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-public class Admin {
-
+public class User {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	private String nom; 
+	
+	@NotNull
+	private String prenom;
 	
 	@Email(message = "Adresse email non valide")
 	@NotEmpty(message = "Adresse email obligatoire")
@@ -20,6 +26,10 @@ public class Admin {
 	private String email;
 	
 	private String password;
+	
+	private float latDefault;
+	
+	private float longDefault;
 	
 	private boolean role;
 
@@ -29,6 +39,22 @@ public class Admin {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public String getEmail() {
@@ -47,6 +73,22 @@ public class Admin {
 		this.password = password;
 	}
 
+	public float getLatDefault() {
+		return latDefault;
+	}
+
+	public void setLatDefault(float latDefault) {
+		this.latDefault = latDefault;
+	}
+
+	public float getLongDefault() {
+		return longDefault;
+	}
+
+	public void setLongDefault(float longDefault) {
+		this.longDefault = longDefault;
+	}
+
 	public boolean isRole() {
 		return role;
 	}
@@ -54,8 +96,6 @@ public class Admin {
 	public void setRole(boolean role) {
 		this.role = role;
 	}
-	
-	
 	
 	
 }
