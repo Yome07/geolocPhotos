@@ -2,10 +2,10 @@
 	
 				<div class="formAddPhoto p-3">
 					<h1>Pour ajouter une photo, cliquer sur la carte</h1>
-					<form method="post" th:object="${photo}">
+					<form method="post" th:object="${photo}" enctype="multipart/form-data">
 						<div class="mb-3">
 						  <label for="formFile" class="form-label">Télécharger votre photo</label>
-						  <input class="form-control" type="file" id="formFile" name="photo">
+						  <input class="form-control" type="file" id="formFile" name="image" accept="image/png, image/jpeg">
 						</div>
 					  <div class="mb-3">
 					    <label for="titre" class="form-label">Titre</label>
