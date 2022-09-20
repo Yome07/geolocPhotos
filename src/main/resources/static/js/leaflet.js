@@ -3,14 +3,7 @@ var lat = 46.227638;
 var lon = 2.213749;
 var macarte = null;
 var markerClusters; // Servira à stocker les groupes de marqueurs
-// Nous initialisons une liste de marqueurs
-var villes = {
-    "Paris": { "lat": 48.852969, "lon": 2.349903 },
-    "Brest": { "lat": 48.383, "lon": -4.500 },
-    "Quimper": { "lat": 48.000, "lon": -4.100 },
-    "Bayonne": { "lat": 43.500, "lon": -1.467 },
-    "Marseille": {"lat":43.295222,"lon":5.386659}
-};
+
     // Fonction d'initialisation de la carte
     // function initMap() {
         // Nous définissons le dossier qui contiendra les marqueurs

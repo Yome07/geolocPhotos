@@ -58,5 +58,13 @@ public class UserLogin implements UserDetails {
 	public String getFullName() {
 		return user.getNom() + " " + user.getPrenom();
 	}
+	
+	public float getLatitude() {
+		return user.getLatDefault();
+	}
+	
+	public float getLongitude() {
+		return user.getLongDefault();
+	}
 
 }
