@@ -1,11 +1,15 @@
 package com.example.demo.model;
 
-import java.util.Date;
 
+
+import java.sql.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -28,11 +32,13 @@ public class Photo {
 	
 	private float longitude;
 	
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL )
+	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne
-	private Album album;
+	@ManyToOne( cascade = CascadeType.ALL )
+	@JoinColumn(name="album_id")
+	private Album albums;
 
 	public Long getId() {
 		return id;
@@ -107,11 +113,11 @@ public class Photo {
 	}
 
 	public Album getAlbum() {
-		return album;
+		return albums;
 	}
 
 	public void setAlbum(Album album) {
-		this.album = album;
+		this.albums = album;
 	}
 	
 	

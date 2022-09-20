@@ -33,16 +33,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Catégorie</a>
               </li>
-              <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" th:href="@{/ajoutPhoto}">Ajouter une photo</a>
-              </li>
-              <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="#">Modifier/Supprimer une photo</a>
-              </li>
               <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-		            Album
-		          </a>
+		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Photos</a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" th:href="@{/ajout-photo}">Ajouter une photo</a></li>
+		            <!-- <li><a class="dropdown-item" href="#">Modifier/Supprimer une photo</a></li>-->
+		          </ul>
+		      </li>
+              <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Album</a>
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" th:href="@{/ajout-album}">Ajouter un album</a></li>
 		            <li><a class="dropdown-item" th:href="@{/liste-albums}">Mes albums</a></li>
