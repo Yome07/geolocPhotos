@@ -41,17 +41,17 @@ public class PhotoController {
 	}
 	
 	@PostMapping("/ajout-photo")
-	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult, 
+	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult,
 			@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
-			System.out.println(photo.getFileName());
-			System.out.println(photo.getTitre());
-			System.out.println(photo.getDate());
-			System.out.println(photo.getDescription());
-			System.out.println(photo.getLatitude());
-			System.out.println(photo.getLongitude());
-			System.out.println(photo.isPublique());
+			System.out.println("file : " + photo.getFileName());
+			System.out.println("titre : " + photo.getTitre());
+			System.out.println("date : " + photo.getDate());
+			System.out.println("description : " + photo.getDescription());
+			System.out.println("lat : " + photo.getLatitude());
+			System.out.println("long : " + photo.getLongitude());
+			System.out.println("publique : " + photo.isPublique());
 
 			return "/photo/ajoutPhoto";
 		}
