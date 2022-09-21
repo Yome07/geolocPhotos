@@ -1,12 +1,22 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.Photo;
 import com.example.demo.model.User;
@@ -31,10 +41,18 @@ public class PhotoController {
 	}
 	
 	@PostMapping("/ajout-photo")
-	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult) {
+	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult, 
+			@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
-			
+			System.out.println(photo.getFileName());
+			System.out.println(photo.getTitre());
+			System.out.println(photo.getDate());
+			System.out.println(photo.getDescription());
+			System.out.println(photo.getLatitude());
+			System.out.println(photo.getLongitude());
+			System.out.println(photo.isPublique());
+
 			return "/photo/ajoutPhoto";
 		}
 		
@@ -46,8 +64,25 @@ public class PhotoController {
 			System.out.println(user);
 			photo.setUser(user);
 			
-			photoServices.createPhoto(photo);
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			photo.setFileName(fileName);
 			
+			Photo savedPhoto = photoServices.createPhoto(photo);
+			
+			String uploadDir = "photos-files/" + savedPhoto.getId();
+			
+			Path uploadPath = Paths.get(uploadDir);
+			
+			if (!Files.exists(uploadPath)) {
+				Files.createDirectories(uploadPath);
+			}
+			
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+				Path filePath = uploadPath.resolve(fileName);
+				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				throw new IOException("Impossible de sauvegarder le fichier : " + fileName);
+			}
 			return "redirect:/";
 			
 		}
