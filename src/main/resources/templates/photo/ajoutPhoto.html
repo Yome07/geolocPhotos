@@ -2,11 +2,15 @@
 	
 				<div class="formulaire p-3">
 					<h1>Pour ajouter une photo, cliquer sur la carte</h1>
-					<form method="post" th:object="${photo}" >
-						<!-- <div class="mb-3">
-						  <label for="formFile" class="form-label">Télécharger votre photo</label>
-						  <input class="form-control" type="file" id="formFile" name="image" accept="image/png, image/jpeg">
-						</div>-->
+
+					<form method="post" th:object="${photo}" enctype="multipart/form-data">
+						<div class="mb-3">
+						  <label for="fileImage" class="form-label">Télécharger votre photo</label>
+						  <input class="form-control" type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg">
+						</div>
+						<div class="mb-3">
+							<img id="thumbnail" alt="image preview" />
+						</div>
 					  <div class="mb-3">
 					    <label for="titre" class="form-label">Titre</label>
 					    <input type="text" class="form-control" id="titre" name="titre">

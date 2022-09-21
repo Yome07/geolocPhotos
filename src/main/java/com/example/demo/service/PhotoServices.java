@@ -12,7 +12,7 @@ public class PhotoServices {
 	@Autowired
 	private PhotoRepository photoRepository;
 	
-	public void createPhoto(Photo photo) {
-		photoRepository.save(photo);
+	public Photo createPhoto(Photo photo) {
+		return photoRepository.save(photo);
 	}
 }

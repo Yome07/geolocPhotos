@@ -22,7 +22,7 @@ public class Photo {
 	
 	private String description;
 	
-//	private String fileName;
+	private String fileName;
 	
 	private Date date;
 	
@@ -64,13 +64,13 @@ public class Photo {
 		this.description = description;
 	}
 
-//	public String getFileName() {
-//		return fileName;
-//	}
-//
-//	public void setFileName(String fileName) {
-//		this.fileName = fileName;
-//	}
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	public Date getDate() {
 		return date;
