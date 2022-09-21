@@ -22,7 +22,7 @@ public class Photo {
 	
 	private String description;
 	
-	private String fileName;
+//	private String fileName;
 	
 	private Date date;
 	
@@ -36,9 +36,9 @@ public class Photo {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne( cascade = CascadeType.ALL )
-	@JoinColumn(name="album_id")
-	private Album albums;
+//	@ManyToOne( cascade = CascadeType.ALL )
+//	@JoinColumn(name="album_id")
+//	private Album album;
 
 	public Long getId() {
 		return id;
@@ -64,13 +64,13 @@ public class Photo {
 		this.description = description;
 	}
 
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+//	public String getFileName() {
+//		return fileName;
+//	}
+//
+//	public void setFileName(String fileName) {
+//		this.fileName = fileName;
+//	}
 
 	public Date getDate() {
 		return date;
@@ -112,13 +112,13 @@ public class Photo {
 		this.user = user;
 	}
 
-	public Album getAlbum() {
-		return albums;
-	}
-
-	public void setAlbum(Album album) {
-		this.albums = album;
-	}
+//	public Album getAlbum() {
+//		return album;
+//	}
+//
+//	public void setAlbum(Album album) {
+//		this.album = album;
+//	}
 	
 	
 }

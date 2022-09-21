@@ -2,11 +2,11 @@
 	
 				<div class="formulaire p-3">
 					<h1>Pour ajouter une photo, cliquer sur la carte</h1>
-					<form method="post" th:object="${photo}" enctype="multipart/form-data">
-						<div class="mb-3">
+					<form method="post" th:object="${photo}" >
+						<!-- <div class="mb-3">
 						  <label for="formFile" class="form-label">Télécharger votre photo</label>
 						  <input class="form-control" type="file" id="formFile" name="image" accept="image/png, image/jpeg">
-						</div>
+						</div>-->
 					  <div class="mb-3">
 					    <label for="titre" class="form-label">Titre</label>
 					    <input type="text" class="form-control" id="titre" name="titre">
@@ -23,13 +23,13 @@
 					    <input type="checkbox" class="form-check-input" id="publique" name="publique">
 					    <label class="form-check-label" for="publique">Photo publique</label>
 					  </div>
-					  <div class="mb-3">
+					  <!-- <div class="mb-3">
 						  <select class="form-select" name="album">
-							  <option selected>Choisisez un album</option>
+							  <option selected>Choisissez un album</option>
 							  <option th:each="album:${albums}" th:value="${album.id}" 
 	                th:text="${album.nom}"></option>
 							</select>
-						</div>
+						</div>-->
 						<!-- <div class="mb-3">
 						<select class="form-select" multiple >
 						  <option selected>Choisisez une ou plusieurs ctégories</option>
@@ -51,7 +51,7 @@
 	
     <!-- Fichiers Javascript -->
     <!-- <script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js'></script> -->
-    <!-- <script type='text/javascript'th:src="@{js/initLeaflet.js}"></script>-->
-    <script type='text/javascript'th:src="@{js/ajout.js}"></script>
+    <script type='text/javascript' th:src="@{js/initLeaflet.js}"></script>
+    <script type='text/javascript' th:src="@{js/ajout.js}"></script>
 </body>
 </html>

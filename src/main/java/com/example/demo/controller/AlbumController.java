@@ -60,6 +60,7 @@ public class AlbumController {
 	@GetMapping("/liste-albums")
 	public String list(Model model) {
 		
+		
 		List<Album> albums = albumServices.findAll();
 		
 		model.addAttribute("albums", albums);

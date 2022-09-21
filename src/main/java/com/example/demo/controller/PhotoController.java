@@ -34,16 +34,23 @@ public class PhotoController {
 	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
-			
+			System.out.println(bindingResult.getObjectName());
+			System.out.println(photo.getDescription());
+//			System.out.println(photo.getFileName());
+			System.out.println(photo.getLatitude());
+			System.out.println(photo.getLongitude());
+			System.out.println(photo.getTitre());
+			System.out.println(photo.isPublique());
+			System.out.println(photo.getDate());
 			return "/photo/ajoutPhoto";
 		}
 		
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-		System.out.println(username);
+
 		if (username != null) {
 			User user = new User();
 			user = userRepository.findByEmail(username);
-			System.out.println(user);
+			
 			photo.setUser(user);
 			
 			photoServices.createPhoto(photo);
