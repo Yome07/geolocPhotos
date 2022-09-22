@@ -35,6 +35,7 @@ var macarte = null;
  initMap(); 
  };
  
+ // Affichage de l'image avant son téléchargement
  $(document).ready(function() {
     		$('#fileImage').change(function(){
     			showImageThumbnail(this);

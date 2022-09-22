@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Photo {
@@ -120,5 +121,10 @@ public class Photo {
 //		this.album = album;
 //	}
 	
-	
+	@Transient
+	public String getFileNameImagePath() {
+		if (fileName == null || id == null) return null;
+		
+		return "/photos-files/" + id + "/" + fileName;
+	}
 }

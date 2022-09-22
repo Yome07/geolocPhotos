@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+	package com.example.demo.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,10 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -43,9 +45,13 @@ public class PhotoController {
 	@PostMapping("/ajout-photo")
 	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult,
 			@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		photo.setFileName(fileName);
+		
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
-
+			System.out.println(bindingResult.getObjectName());
 			System.out.println("file : " + photo.getFileName());
 			System.out.println("titre : " + photo.getTitre());
 			System.out.println("date : " + photo.getDate());
@@ -53,7 +59,8 @@ public class PhotoController {
 			System.out.println("lat : " + photo.getLatitude());
 			System.out.println("long : " + photo.getLongitude());
 			System.out.println("publique : " + photo.isPublique());
-
+			System.out.println("____________");
+			System.out.println(bindingResult.getFieldError());
 
 			return "/photo/ajoutPhoto";
 		}
@@ -66,12 +73,9 @@ public class PhotoController {
 			
 			photo.setUser(user);
 			
-			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-			photo.setFileName(fileName);
-			
 			Photo savedPhoto = photoServices.createPhoto(photo);
-			
-			String uploadDir = "photos-files/" + savedPhoto.getId();
+
+			String uploadDir = "src/main/resources/static/photos-files/" + savedPhoto.getId();
 			
 			Path uploadPath = Paths.get(uploadDir);
 			
@@ -79,16 +83,27 @@ public class PhotoController {
 				Files.createDirectories(uploadPath);
 			}
 			
+			
 			try (InputStream inputStream = multipartFile.getInputStream()) {
 				Path filePath = uploadPath.resolve(fileName);
 				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
-				throw new IOException("Impossible de sauvegarder le fichier : " + fileName);
+				throw new IOException("Impossible de sauvegarder le fichier : " + fileName, e);
 			}
 			return "redirect:/";
 			
 		}
 		
 		return "photo/ajoutPhoto";
+	}
+	
+	//Liste des photos
+	@GetMapping("/listPhotos")
+	public String listPhotos(Model model) {
+		List<Photo> photos = photoServices.findAll();
+		
+		model.addAttribute("photos", photos);
+		
+		return "photo/listPhoto";
 	}
 }

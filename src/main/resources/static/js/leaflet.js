@@ -4,6 +4,14 @@ var lon = 2.213749;
 var macarte = null;
 var markerClusters; // Servira à stocker les groupes de marqueurs
 
+
+var villes = {
+    "Paris": { "lat": 48.852969, "lon": 2.349903 },
+    "Brest": { "lat": 48.383, "lon": -4.500 },
+    "Quimper": { "lat": 48.000, "lon": -4.100 },
+    "Bayonne": { "lat": 43.500, "lon": -1.467 },
+    "Marseille": {"lat":43.295222,"lon":5.386659}
+};
     // Fonction d'initialisation de la carte
     // function initMap() {
         // Nous définissons le dossier qui contiendra les marqueurs
@@ -18,14 +26,14 @@ var markerClusters; // Servira à stocker les groupes de marqueurs
             minZoom: 1,
             maxZoom: 20
         }).addTo(macarte);
-        // Nous parcourons la liste des villes
-        // for (ville in villes) {
+       // Nous parcourons la liste des villes
+        for (ville in villes) {
         
-        //     var marker = L.marker([villes[ville].lat, villes[ville].lon]); // pas de addTo(macarte), l'affichage sera géré par la bibliothèque des clusters
-        //     var popupContent = '<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>';
-        //     marker.bindPopup(popupContent);
-        //     markerClusters.addLayer(marker); // Nous ajoutons le marqueur aux groupes
-        // }
+            var marker = L.marker([villes[ville].lat, villes[ville].lon]); // pas de addTo(macarte), l'affichage sera géré par la bibliothèque des clusters
+            var popupContent = '<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>';
+            marker.bindPopup(popupContent);
+            markerClusters.addLayer(marker); // Nous ajoutons le marqueur aux groupes
+        }
        macarte.addLayer(markerClusters);
 
         var popup = L.popup()

@@ -25,6 +25,16 @@
 	width:33%;
 }
 
+.listePhotos {
+	position: absolute;
+	top: 100px;
+	right: 50px;
+	z-index: 10;
+	background-color: #ffffffee;
+	border-radius:5px;
+	width:50%;
+}
+
 .container div div div {
 	background-color: #ffffffee;
 	border-radius:5px;
@@ -32,4 +42,8 @@
 
 #addPhoto .container {
 	position:relative;
+}
+
+#thumbnail {
+	max-width:250px;
 }
