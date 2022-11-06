@@ -30,7 +30,7 @@
                 minZoom: 1,
                 maxZoom: 20
             }).addTo(macarte);
-            // Nous parcourons la liste des villes
+            // Nous parcourons la liste des photos
             /*<![CDATA[*/
     		
 				    /*[# th:each="photo : ${photos}"]*/
@@ -41,7 +41,7 @@
 				    	var longitude = [[${photo.longitude}]]
 				    	+]*/
 				    	var marker = L.marker([latitude,longitude]);
-				    	// Nous ajoutons la popup. A noter que son contenu (ici la variable ville) peut être du HTML
+				    	// Nous ajoutons la popup.
 				    	/*[+
 				    		var infosPhoto = '<h4>' + [[${photo.titre}]] + '</h4><p><img class="thumbnail" src="' +
 				    		[[@{${photo.FileNameImagePath}}]] + '"/></p><p>Photographe : ' + [[${photo.user} ? ${photo.user.prenom} + ' ' + ${photo.user.nom} : 'Inconnu']] + '</p><p>Date : ' + [[${photo.date}]] + '</p><p>' +

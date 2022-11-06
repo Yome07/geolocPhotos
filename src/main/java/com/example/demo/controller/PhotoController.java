@@ -118,13 +118,13 @@ public class PhotoController {
 	}
 	
 	//Liste des photos
-	@GetMapping("/listPhotos")
+	@GetMapping("/liste-photos")
 	public String listPhotos(Model model) {
 		List<Photo> photos = photoServices.findAll();
 		
 		model.addAttribute("photos", photos);
 		
-		return "photo/listPhoto";
+		return "photo/listPhotos";
 	}
 	
 	// affichage de mes photos
@@ -142,6 +142,8 @@ public class PhotoController {
 			return "photo/mesPhotos";
 			
 		}
+		
+	
 		
 		//************EDIT
 		@GetMapping("/edit-photo")
