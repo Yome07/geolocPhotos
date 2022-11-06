@@ -1,0 +1,27 @@
+<th:block th:insert="fragments/header::header"></th:block>
+    
+	<div class=container>
+   		<div class="row gx-5">
+   			<div class="col">
+   				<div class=p-3>
+    				<h1>Mes albums</h1>
+    				<table class="table">
+					  <tbody>
+					    <tr th:each="album:${mesAlbums}">
+					      <th scope="row" th:text="${album.id}"></th>
+					      <td th:text="${album.nom}"></td>
+					    </tr>
+					  </tbody>
+					</table>			
+				</div>
+   			</div>
+   		</div>
+   	</div>
+   	<div id="map"></div>
+ 
+    <!-- Fichiers Javascript -->
+	
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <script type='text/javascript'th:src="@{js/initLeaflet.js}"></script>
+</body>
+</html>
