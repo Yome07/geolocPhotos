@@ -1,6 +1,6 @@
 @charset "UTF-8";
 #map {
-    height:100vh;
+    height:calc(100vh - 56px);
     z-index: 1;
 }
 
@@ -8,6 +8,9 @@
 	width: 66%;
 }
 
+nav .navbar-text a.btn-light {
+	color: #000;
+}
 .container {
 	position: absolute;
 	top: 150px;
@@ -23,6 +26,8 @@
 	background-color: #ffffffee;
 	border-radius:5px;
 	width:33%;
+	max-height:85vh;
+	overflow:auto;
 }
 
 .listePhotos {
@@ -32,7 +37,9 @@
 	z-index: 10;
 	background-color: #ffffffee;
 	border-radius:5px;
-	width:50%;
+	width:90%;
+	height:85vh;
+	overflow:scroll;
 }
 
 .container div div div {
@@ -44,6 +51,6 @@
 	position:relative;
 }
 
-#thumbnail {
+.thumbnail {
 	max-width:250px;
 }

@@ -1,4 +1,4 @@
-<div th:insert="fragments/header::header"></div>
+<th:block th:insert="fragments/header::header"></th:block>
     
       <div id="map"></div>
  
@@ -43,7 +43,9 @@
 				    	var marker = L.marker([latitude,longitude]);
 				    	// Nous ajoutons la popup. A noter que son contenu (ici la variable ville) peut être du HTML
 				    	/*[+
-				    		var infosPhoto = '<h4>' + [[${photo.titre}]] + '</h4><p><img src="' + [[@{${photo.FileNameImagePath}}]] + '"/></p><p>Date : ' + [[${photo.date}]] + '</p><p>' + [[${photo.description}]] + '</p>'
+				    		var infosPhoto = '<h4>' + [[${photo.titre}]] + '</h4><p><img class="thumbnail" src="' +
+				    		[[@{${photo.FileNameImagePath}}]] + '"/></p><p>Photographe : ' + [[${photo.user} ? ${photo.user.prenom} + ' ' + ${photo.user.nom} : 'Inconnu']] + '</p><p>Date : ' + [[${photo.date}]] + '</p><p>' +
+				    		[[${photo.description}]] + '</p><p>Album : ' + [[${photo.album} ? ${photo.album.nom} : 'Inconnu']] + '</p>'
 				    	+]*/	
 				    	marker.bindPopup(infosPhoto);
 				    	markerClusters.addLayer(marker); // Nous ajoutons le marqueur aux groupes

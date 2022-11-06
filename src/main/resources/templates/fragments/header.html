@@ -29,13 +29,19 @@
               <li class="nav-item">
                 <a class="nav-link active" th:href="@{/}">Accueil</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Catégorie</a>
-              </li>
+              <li sec:authorize="isAuthenticated()"  th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catégorie</a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" th:href="@{/ajout-categorie}">Ajouter une catégorie</a></li>
+		            <li><a class="dropdown-item" th:href="@{/liste-categories}">Liste de catégories</a></li>
+		          </ul>
+		      </li>
               <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Photos</a>
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" th:href="@{/ajout-photo}">Ajouter une photo</a></li>
+		            <li><a class="dropdown-item" th:href="@{/mes-photos}">Mes photos</a></li>
+		            
 		            <!-- <li><a class="dropdown-item" href="#">Modifier/Supprimer une photo</a></li>-->
 		          </ul>
 		      </li>
@@ -43,7 +49,7 @@
 		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Album</a>
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" th:href="@{/ajout-album}">Ajouter un album</a></li>
-		            <li><a class="dropdown-item" th:href="@{/liste-albums}">Mes albums</a></li>
+		            <li><a class="dropdown-item" th:href="@{/mes-albums}">Mes albums</a></li>
 		          </ul>
 		      </li>
               <li class="nav-item">
@@ -62,7 +68,8 @@
             		</script>-->
 				</span> 
 				<span sec:authorize="isAnonymous()">
-              		<a class="nav-link" th:href="@{/login}">Inscription/Connexion</a>
+					<a class="btn btn-outline-light" th:href="@{/login}" role="button">Connexion</a>
+              		<a class="btn btn-light" th:href="@{/inscription}"  role="button">Inscription</a>
               		
               	</span>
             </span>

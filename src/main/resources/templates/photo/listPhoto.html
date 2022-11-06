@@ -1,4 +1,4 @@
-<div th:insert="fragments/header::header"></div>
+<th:block th:insert="fragments/header::header"></th:block>
     <div class="listePhotos p-3">
 		<h1>liste des photos</h1>
 		<div class="btn btn-outline-warning" th:if="${photos.isEmpty()}">
@@ -18,7 +18,8 @@
 			      <th scope="col">publique</th>
 			      <th scope="col">user id</th>
 			      <th scope="col">image</th>
-			      
+			      <th scope="col">album</th>
+			      <th scope="col">catégories</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -32,8 +33,8 @@
 			      <td th:text="${photo.longitude}"> </td>
 			      <td th:text="${photo.publique} ? 'publique' : 'privée'"> </td>
 			      <td th:text="${photo.user} ? ${photo.user.prenom} : 'Inconnu' "> </td>
-			      <td><img th:src="@{${photo.FileNameImagePath}}"/></td>
-			      <!-- <td th:text="${photo.album} ? ${photo.album.nom} : 'Inconnu' "> </td>-->
+			      <td><img class="thumbnail" th:src="@{${photo.FileNameImagePath}}"/></td>
+			      <td th:text="${photo.album} ? ${photo.album.nom} : 'Inconnu' "> </td>
 			      
 			    </tr>
 			    

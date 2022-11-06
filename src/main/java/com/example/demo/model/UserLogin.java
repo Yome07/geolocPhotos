@@ -66,5 +66,9 @@ public class UserLogin implements UserDetails {
 	public float getLongitude() {
 		return user.getLongDefault();
 	}
+	
+	public boolean isAdmin() {
+		return user.isRole();
+	}
 
 }

@@ -3,13 +3,17 @@ package com.example.demo.model;
 
 
 import java.sql.Date;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -33,13 +37,22 @@ public class Photo {
 	
 	private float longitude;
 	
-	@ManyToOne( cascade = CascadeType.ALL )
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
-//	@ManyToOne( cascade = CascadeType.ALL )
-//	@JoinColumn(name="album_id")
-//	private Album album;
+	@ManyToOne
+	@JoinColumn(name="album_id")
+	private Album album;
+
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinTable(
+			name = "photo_categorie",
+			joinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "categorie_id", referencedColumnName = "id")
+			)
+	 private Collection<Categorie> categorie;
 
 	public Long getId() {
 		return id;
@@ -113,14 +126,22 @@ public class Photo {
 		this.user = user;
 	}
 
-//	public Album getAlbum() {
-//		return album;
-//	}
-//
-//	public void setAlbum(Album album) {
-//		this.album = album;
-//	}
-	
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+
+	public Collection<Categorie> getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Collection<Categorie> categorie) {
+		this.categorie = categorie;
+	}
+
 	@Transient
 	public String getFileNameImagePath() {
 		if (fileName == null || id == null) return null;

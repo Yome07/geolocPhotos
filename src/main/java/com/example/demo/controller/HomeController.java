@@ -25,7 +25,7 @@ public class HomeController {
 	//Affichage des photos avec marqueurs
 		@GetMapping("/")
 		public String listPhotos(Model model) {
-			List<Photo> photos = photoServices.findAll();
+			List<Photo> photos = photoServices.getByPublique(true);
 			
 			model.addAttribute("photos", photos);
 			

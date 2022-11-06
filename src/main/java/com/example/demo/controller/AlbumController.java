@@ -35,10 +35,10 @@ public class AlbumController {
 	@PostMapping("/ajout-album")
 	public String ajoutAlbum(@Validated Album album, BindingResult bindingResult) {
 		
-		if (bindingResult.hasErrors()) {
-			System.out.println(bindingResult.hasErrors());
-			return "album/form";
-		}
+//		if (bindingResult.hasErrors()) {
+//			System.out.println(bindingResult.hasErrors());
+//			return "album/form";
+//		}
 		
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 		
@@ -56,16 +56,32 @@ public class AlbumController {
 		return "album/ajout";
 	}
 	
-	// liste de mess albums
-	@GetMapping("/liste-albums")
-	public String list(Model model) {
+	// liste de mes albums
+	@GetMapping("/mes-albums")
+	public String mesAlbums(Model model) {
+		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+
+		User user = new User();
+		user = userRepository.findByEmail(username);
+
+		List<Album> mesAlbums = albumServices.getAlbumsByUserId(user.getId());
+
+		model.addAttribute("mesAlbums", mesAlbums);
 		
-		
-		List<Album> albums = albumServices.findAll();
-		
-		model.addAttribute("albums", albums);
-		
-		return "album/list";
+		return "album/mesAlbums";
 		
 	}
+	
+	// liste de tous les albums
+		@GetMapping("/liste-albums")
+		public String list(Model model) {
+			
+			
+			List<Album> albums = albumServices.findAll();
+			
+			model.addAttribute("albums", albums);
+			
+			return "album/list";
+			
+		}
 }

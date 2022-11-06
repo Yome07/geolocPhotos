@@ -19,6 +19,14 @@ public class Album {
 	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	public Album() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Album(String nom) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getId() {
 		return id;

@@ -8,22 +8,31 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class User {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@NotNull(message = "Champ obligatoire")
 	private String nom; 
 	
-	@NotNull
+	@NotNull(message = "Champ obligatoire")
 	private String prenom;
 	
 	@Email(message = "Adresse email non valide")
 	@NotEmpty(message = "Adresse email obligatoire")
 	@Column(name="email", length=255, nullable=false, unique=true)
 	private String email;
+	     
+	
+	@NotNull(message = "password may not be null")     
+	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;.',?/~$^+=<>]).{8,5000}$",
+	message = "Le mot de passe doit contenir des minuscules, majuscules, des chiffres et des caractères spéciaux")
+	@Length(min =8, max = 100)
 	
 	private String password;
 	
