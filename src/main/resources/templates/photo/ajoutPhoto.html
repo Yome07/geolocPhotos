@@ -23,6 +23,13 @@
 						  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
 						  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
 					  </div>
+					  <div class="mb-3">
+						  	<label  class="form-label">Cliquer sur la carte pour définir le lieu de la photo</label>
+							<input type="hidden" class="form-control" id="longitude" name="longitude" value="">
+							<input type="hidden" class="form-control" id="latitude" name="latitude" value="">
+							<p>longitude : <span id="afficheLongitude"></span></p>
+							<p>latitude : <span id="afficheLatitude"></span></p>
+						</div>
 					  <div class="mb-3 form-check">
 					    <input type="checkbox" class="form-check-input" id="publique" name="publique">
 					    <label class="form-check-label" for="publique">Photo publique</label>
@@ -40,10 +47,6 @@
 						  <option th:each="categorie:${categories}" th:value="${categorie.id}" 
 	                th:text="${categorie.nom}"></option>
 						</select>
-						</div>
-						<div class="mb-3">
-							<input type="hidden" class="form-check-input" id="longitude" name="longitude" value="">
-							<input type="hidden" class="form-check-input" id="latitude" name="latitude" value="">
 						</div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
 					</form>

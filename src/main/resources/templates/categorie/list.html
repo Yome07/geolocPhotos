@@ -9,7 +9,22 @@
 					  <tbody>
 					    <tr th:each="categorie:${categories}">
 					      <th scope="row" th:text="${categorie.id}"></th>
-					      <td th:text="${categorie.nom}"></td>
+					      <td>
+					      	<a th:href="@{/liste-photos-par-categorie/{id} (id=${categorie.id}) }">
+					      		<span th:text="${categorie.nom}"></span>
+					      	</a>
+					      </td>
+					      <td>
+					      	<a class="btn btn-info" th:href="@{/edit-categorie(id=${categorie.id}) }" role="button">
+					      		Modifier
+					      	</a>
+					      </td>
+					      <td>
+					      	<a class="btn btn-danger" th:href="@{/liste-categories/delete/{id} (id=${categorie.id}) }" 
+					      	role="button">
+					      		Supprimer
+					      	</a>
+					      </td>
 					    </tr>
 					  </tbody>
 					</table>			

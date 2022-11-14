@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,18 @@ public class UserServices {
 		user.setPassword(encodePwd.encode(user.getPassword()));
 		
 		userRepository.save(user);
+	}
+	
+	public void deleteUser(User user) {
+		userRepository.delete(user);
+	}
+	
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
+	
+	public Optional<User> getById(Long id) {
+		return userRepository.findById(id);
 	}
 
 }

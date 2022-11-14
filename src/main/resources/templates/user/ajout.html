@@ -26,8 +26,10 @@
 						  </div>
 						  <div class="mb-3">
 						  	<label  class="form-label">Cliquer sur la carte pour définir votre lieu par défaut</label>
-							<input type="text" class="form-control" id="longitude" name="longDefault" value="" disabled>
-							<input type="text" class="form-control" id="latitude" name="latDefault" value="" disabled>
+							<input type="hidden" class="form-control" id="longitude" name="longDefault" value="">
+							<input type="hidden" class="form-control" id="latitude" name="latDefault" value="">
+							<p>longitude : <span id="afficheLongitude"></span></p>
+							<p>latitude : <span id="afficheLatitude"></span></p>
 						</div>
 						<div class="mb-3 form-check">
 					    <input type="checkbox" class="form-check-input" id="role" name="role">

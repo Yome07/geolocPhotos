@@ -28,6 +28,10 @@
 					    <input type="checkbox" class="form-check-input" id="publique" name="publique" th:field="*{publique}">
 					    <label class="form-check-label" for="publique">Photo publique</label>
 					  </div>
+						<div class="mb-3">
+							<input type="hidden" class="form-check-input" id="longitude" name="longitude" th:field="*{longitude}" value="">
+							<input type="hidden" class="form-check-input" id="latitude" name="latitude" th:field="*{latitude}" value="">
+						</div>
 					  <div class="mb-3">
 					  	<label for="album" class="form-label">Choisissez un album</label>
 						  <select class="form-select" name="album" th:field="*{album}">
@@ -41,10 +45,6 @@
 						  <option th:each="categorie:${categories}" th:value="${categorie.id}" 
 	                th:text="${categorie.nom}"></option>
 						</select>
-						</div>
-						<div class="mb-3">
-							<input type="hidden" class="form-check-input" id="longitude" name="longitude" th:field="*{longitude}" value="">
-							<input type="hidden" class="form-check-input" id="latitude" name="latitude" th:field="*{latitude}" value="">
 						</div>
 					  <button type="submit" class="btn btn-primary">Submit</button>
 					</form>

@@ -30,9 +30,9 @@ public class User {
 	     
 	
 	@NotNull(message = "password may not be null")     
-	@Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;.',?/~$^+=<>]).{8,5000}$",
-	message = "Le mot de passe doit contenir des minuscules, majuscules, des chiffres et des caractères spéciaux")
-	@Length(min =8, max = 100)
+	//Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;.',?/~$^+=<>]).{8,5000}$",
+	//message = "Le mot de passe doit contenir des minuscules, majuscules, des chiffres et des caractères spéciaux")
+	//Length(min =8, max = 100)
 	
 	private String password;
 	

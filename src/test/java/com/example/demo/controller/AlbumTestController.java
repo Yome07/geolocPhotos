@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.example.demo.model.Album;
 import com.example.demo.service.AlbumServices;
 
+@DataJpaTest
 class AlbumTestController {
 	
 	@Autowired
@@ -17,10 +21,16 @@ class AlbumTestController {
 		
 		Album album = new Album("enfants");
 		
-		albumServices.createAlbum(album);
+		Album savedAlbum = albumServices.createAlbum(album);
 		
-		//assertEquals(true,albumServices.createAlbum(album));
+		assertNotNull(savedAlbum);
+		
+		//Assertions.assertEquals(true,albumServices.createAlbum(album));
 
 	}
+	
+	/*
+	 * @Test void testFindAlbumByName() { String name = }
+	 */
 
 }

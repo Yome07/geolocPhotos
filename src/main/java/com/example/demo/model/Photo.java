@@ -4,6 +4,8 @@ package com.example.demo.model;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Photo {
@@ -52,7 +55,7 @@ public class Photo {
 			joinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "categorie_id", referencedColumnName = "id")
 			)
-	 private Collection<Categorie> categorie;
+	private Set<Categorie> categorie = new HashSet<Categorie>();
 
 	public Long getId() {
 		return id;
@@ -134,11 +137,11 @@ public class Photo {
 		this.album = album;
 	}
 
-	public Collection<Categorie> getCategorie() {
+	public Set<Categorie> getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(Collection<Categorie> categorie) {
+	public void setCategorie(Set<Categorie> categorie) {
 		this.categorie = categorie;
 	}
 
@@ -148,4 +151,13 @@ public class Photo {
 		
 		return "/photos-files/" + id + "/" + fileName;
 	}
+
+	@Override
+	public String toString() {
+		return "Photo [id=" + id + ", titre=" + titre + ", description=" + description + ", fileName=" + fileName
+				+ ", date=" + date + ", publique=" + publique + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", user=" + user + ", album=" + album + ", categorie=" + categorie + "]";
+	}
+	
+	
 }

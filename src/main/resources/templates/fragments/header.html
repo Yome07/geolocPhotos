@@ -30,19 +30,25 @@
                 <a class="nav-link active" th:href="@{/}">Accueil</a>
               </li>
               <li sec:authorize="isAuthenticated()"  th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catégorie</a>
+		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
 		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" th:href="@{/liste-users}">Liste des photographes</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" th:href="@{/liste-albums}">Liste des albums</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" th:href="@{/liste-photos}">Liste des photos</a></li>
+		          	<li><hr class="dropdown-divider"></li>
 		            <li><a class="dropdown-item" th:href="@{/ajout-categorie}">Ajouter une catégorie</a></li>
-		            <li><a class="dropdown-item" th:href="@{/liste-categories}">Liste de catégories</a></li>
+		            <li><a class="dropdown-item" th:href="@{/liste-categories}">Liste des catégories</a></li>
+		            
 		          </ul>
 		      </li>
               <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Photos</a>
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" th:href="@{/ajout-photo}">Ajouter une photo</a></li>
-		            <li><a class="dropdown-item" th:href="@{/mes-photos}">Mes photos</a></li>		            
-		            
-		            <!-- <li><a class="dropdown-item" href="#">Modifier/Supprimer une photo</a></li>-->
+		            <li><a class="dropdown-item" th:href="@{/mes-photos}">Mes photos (carte)</a></li>
+		            <li><a class="dropdown-item" th:href="@{/mes-photos-liste}">Mes photos (liste)</a></li>		            
 		          </ul>
 		      </li>
               <li sec:authorize="isAuthenticated()" class="nav-item dropdown">

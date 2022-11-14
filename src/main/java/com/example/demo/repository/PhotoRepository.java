@@ -11,4 +11,8 @@ public interface PhotoRepository extends JpaRepository<Photo, Long>{
 	List<Photo> findByPublique(boolean publique);
 
 	List<Photo> findByUserId(Long id);
+	
+	List<Photo> findByAlbumId(Long id);
+	
+	List<Photo> findByCategorieId(Long id);
 }

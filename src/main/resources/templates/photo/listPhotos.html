@@ -35,7 +35,7 @@
 			      <td th:text="${photo.user} ? ${photo.user.prenom} : 'Inconnu' "> </td>
 			      <td><img class="thumbnail" th:src="@{${photo.FileNameImagePath}}"/></td>
 			      <td th:text="${photo.album} ? ${photo.album.nom} : 'Inconnu' "> </td>
-			      
+			      <td th:text="${photo.categorie}"></td>
 			    </tr>
 			    
 			  </tbody>

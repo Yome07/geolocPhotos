@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Album;
+import com.example.demo.model.Photo;
 import com.example.demo.repository.AlbumRepository;
 
 @Service
@@ -15,15 +16,19 @@ public class AlbumServices {
 	@Autowired
 	private AlbumRepository albumRepository;
 	
-	public void createAlbum(Album album) {
-		albumRepository.save(album);
+	public Album createAlbum(Album album) {
+		return albumRepository.save(album);
+	}
+	
+	public void deleteAlbum(Album album) {
+		albumRepository.delete(album);
 	}
 	
 	public List<Album> findAll(){
 		return albumRepository.findAll();
 	}
 	
-	public Optional<Album> findById(Long id) {
+	public Optional<Album> getById(Long id) {
 		return albumRepository.findById(id);
 	}
 	

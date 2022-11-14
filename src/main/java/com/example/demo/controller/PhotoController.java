@@ -50,7 +50,7 @@ public class PhotoController {
 	
 	
 	@GetMapping("/ajout-photo")
-	public String ajoutPhoto(Model model) {
+	public String addPhoto(Model model) {
 		
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
@@ -70,7 +70,7 @@ public class PhotoController {
 	}
 	
 	@PostMapping("/ajout-photo")
-	public String ajoutPhoto(@Validated Photo photo, BindingResult bindingResult,  
+	public String addPhoto(@Validated Photo photo, BindingResult bindingResult,  
 			@RequestParam("id") Optional<Long> id,
 			@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
 		
@@ -123,7 +123,6 @@ public class PhotoController {
 		List<Photo> photos = photoServices.findAll();
 		
 		model.addAttribute("photos", photos);
-		
 		return "photo/listPhotos";
 	}
 	
@@ -143,11 +142,27 @@ public class PhotoController {
 			
 		}
 		
+		// affichage de mes photos en liste
+				@GetMapping("/mes-photos-liste")
+				public String mesPhotosListe(Photo photo, @RequestParam(value = "id", required = false) Long id, Model model) {
+					String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+
+					User user = new User();
+					user = userServices.findByEmail(username);
+
+					List<Photo> photos = photoServices.getByUserId(user.getId());
+
+					model.addAttribute("photos", photos);
+					
+					return "photo/listPhotos";
+					
+				}
+		
 	
 		
 		//************EDIT
 		@GetMapping("/edit-photo")
-		public String accueil(Photo photo,  @RequestParam(value = "id", required = false) Long id,Model model) {
+		public String editPhoto(@RequestParam(value = "id", required = false) Long id,Model model) {
 			
 			String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
@@ -164,9 +179,9 @@ public class PhotoController {
 			model.addAttribute("categories", categories);
 			
 			if(id != null) {
-				Optional<Photo> picture = photoServices.getById(id);
-				if(picture.isPresent()) {
-					model.addAttribute("photo", picture.get());
+				Optional<Photo> photo = photoServices.getById(id);
+				if(photo.isPresent()) {
+					model.addAttribute("photo", photo.get());
 				}
 			}
 			
@@ -196,19 +211,9 @@ public class PhotoController {
 				
 				photo.setUser(user);
 				
-				Photo savedPhoto = photoServices.createPhoto(photo);
+				photoServices.createPhoto(photo);
 				
 				
-				
-				
-				System.out.println("file : " + photo.getFileName());
-				System.out.println("titre : " + photo.getTitre());
-				System.out.println("date : " + photo.getDate());
-				System.out.println("description : " + photo.getDescription());
-				System.out.println("lat : " + photo.getLatitude());
-				System.out.println("long : " + photo.getLongitude());
-				System.out.println("publique : " + photo.isPublique());
-				//System.out.println("album : " + photo.getAlbum().getNom());
 				return "redirect:/mes-photos";
 				
 			}
@@ -219,7 +224,7 @@ public class PhotoController {
 		
 		//*************DELETE
 		@GetMapping("/mes-photos/delete/{id}")
-		public String supprimer(@PathVariable(value="id") Long id, Model model) {
+		public String deletePhoto(@PathVariable(value="id") Long id, Model model) {
 		
 			Optional<Photo> photo =photoServices.getById(id);
 			
