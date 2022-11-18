@@ -26,7 +26,7 @@ public class Photo {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String titre;
+	private String title;
 	
 	private String description;
 	
@@ -51,19 +51,19 @@ public class Photo {
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(
-			name = "photo_categorie",
+			name = "photo_category",
 			joinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "categorie_id", referencedColumnName = "id")
+			inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
 			)
-	private Set<Categorie> categorie = new HashSet<Categorie>();
+	private Set<Category> category = new HashSet<Category>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(
-			name = "photo_motcle",
+			name = "photo_keyword",
 			joinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "motcle_id", referencedColumnName = "id")
+			inverseJoinColumns = @JoinColumn(name = "keyword_id", referencedColumnName = "id")
 			)
-	private Set<Motcle> motcle = new HashSet<Motcle>();
+	private Set<Keyword> keyword = new HashSet<Keyword>();
 
 	public Long getId() {
 		return id;
@@ -73,12 +73,12 @@ public class Photo {
 		this.id = id;
 	}
 
-	public String getTitre() {
-		return titre;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitre(String titre) {
-		this.titre = titre;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -145,12 +145,12 @@ public class Photo {
 		this.album = album;
 	}
 
-	public Set<Categorie> getCategorie() {
-		return categorie;
+	public Set<Category> getCategory() {
+		return category;
 	}
 
-	public void setCategorie(Set<Categorie> categorie) {
-		this.categorie = categorie;
+	public void setCategory(Set<Category> category) {
+		this.category = category;
 	}
 
 	@Transient
@@ -162,9 +162,9 @@ public class Photo {
 
 	@Override
 	public String toString() {
-		return "Photo [id=" + id + ", titre=" + titre + ", description=" + description + ", fileName=" + fileName
+		return "Photo [id=" + id + ", title=" + title + ", description=" + description + ", fileName=" + fileName
 				+ ", date=" + date + ", publique=" + publique + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", user=" + user + ", album=" + album + ", categorie=" + categorie + "]";
+				+ ", user=" + user + ", album=" + album + ", category=" + category + "]";
 	}
 	
 	

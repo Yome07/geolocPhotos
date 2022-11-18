@@ -7,20 +7,20 @@
     				<h1>Liste des catégories</h1>
     				<table class="table">
 					  <tbody>
-					    <tr th:each="categorie:${categories}">
-					      <th scope="row" th:text="${categorie.id}"></th>
+					    <tr th:each="category:${categories}">
+					      <th scope="row" th:text="${category.id}"></th>
 					      <td>
-					      	<a th:href="@{/liste-photos-par-categorie/{id} (id=${categorie.id}) }">
-					      		<span th:text="${categorie.nom}"></span>
+					      	<a th:href="@{/list-photos-by-category/{id} (id=${category.id}) }">
+					      		<span th:text="${category.name}"></span>
 					      	</a>
 					      </td>
 					      <td>
-					      	<a class="btn btn-info" th:href="@{/edit-categorie(id=${categorie.id}) }" role="button">
+					      	<a class="btn btn-info" th:href="@{/edit-category(id=${category.id}) }" role="button">
 					      		Modifier
 					      	</a>
 					      </td>
 					      <td>
-					      	<a class="btn btn-danger" th:href="@{/liste-categories/delete/{id} (id=${categorie.id}) }" 
+					      	<a class="btn btn-danger" th:href="@{/list-categories/delete/{id} (id=${category.id}) }"
 					      	role="button">
 					      		Supprimer
 					      	</a>

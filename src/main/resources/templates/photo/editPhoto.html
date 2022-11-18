@@ -13,8 +13,8 @@
 					    <input type="hidden" class="form-control" id="titre" name="fileName" th:field="*{fileName}">
 					  </div>
 					  <div class="mb-3">
-					    <label for="titre" class="form-label">Titre</label>
-					    <input type="text" class="form-control" id="titre" name="titre" th:field="*{titre}">
+					    <label for="title" class="form-label">Titre</label>
+					    <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
 					  </div>
 					  <div class="mb-3">
 					    <label for="date" class="form-label">Date</label>
@@ -35,15 +35,15 @@
 					  <div class="mb-3">
 					  	<label for="album" class="form-label">Choisissez un album</label>
 						  <select class="form-select" name="album" th:field="*{album}">
-							  <option th:each="album:${mesAlbums}" th:value="${album.id}" 
-	                th:text="${album.nom}"></option>
+							  <option th:each="album:${myAlbums}" th:value="${album.id}"
+	                th:text="${album.name}"></option>
 							</select>
 						</div>
 						<div class="mb-3">
-						<label for="categorie" class="form-label">Choisissez une ou plusieurs catégories</label>
-						<select class="form-select" multiple name="categorie" th:field="*{categorie}">
-						  <option th:each="categorie:${categories}" th:value="${categorie.id}" 
-	                th:text="${categorie.nom}"></option>
+						<label for="category" class="form-label">Choisissez une ou plusieurs catégories</label>
+						<select class="form-select" multiple name="category" th:field="*{category}">
+						  <option th:each="category:${categories}" th:value="${category.id}"
+	                th:text="${category.name}"></option>
 						</select>
 						</div>
 					  <button type="submit" class="btn btn-primary">Submit</button>

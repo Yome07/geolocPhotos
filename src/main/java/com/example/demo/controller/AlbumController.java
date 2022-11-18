@@ -39,12 +39,12 @@ public class AlbumController {
 	@Autowired UserRepository userRepository;
 	@Autowired AlbumRepository albumRepository;
 	
-	@GetMapping("/ajout-album")
+	@GetMapping("/add-album")
 	public String addAlbum() {
 		return "/album/form";
 	}
 	
-	@PostMapping("/ajout-album")
+	@PostMapping("/add-album")
 	public String addAlbum(@Validated Album album, BindingResult bindingResult) {
 		
 //		if (bindingResult.hasErrors()) {
@@ -65,27 +65,27 @@ public class AlbumController {
 			return "redirect:/";
 		}
 		
-		return "album/ajout";
+		return "album/add";
 	}
 	
 	// liste de mes albums
-	@GetMapping("/mes-albums")
-	public String mesAlbums(Model model) {
+	@GetMapping("/my-albums")
+	public String myAlbums(Model model) {
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
 		User user = new User();
 		user = userRepository.findByEmail(username);
 
-		List<Album> mesAlbums = albumServices.getAlbumsByUserId(user.getId());
+		List<Album> myAlbums = albumServices.getAlbumsByUserId(user.getId());
 
-		model.addAttribute("mesAlbums", mesAlbums);
+		model.addAttribute("myAlbums", myAlbums);
 		
-		return "album/mesAlbums";
+		return "album/myAlbums";
 		
 	}
 	
 	// liste de tous les albums
-	@GetMapping("/liste-albums")
+	@GetMapping("/list-albums")
 	public String list(Model model) {
 		
 		List<Album> albums = albumServices.findAll();
@@ -97,7 +97,7 @@ public class AlbumController {
 	}
 	
 	// liste des photos par albums
-	@GetMapping("/liste-photos-par-album/{id}")
+	@GetMapping("/list-photos-by-album/{id}")
 	public String listPhotosByAlbum(Model model, @PathVariable(value="id") Long id) {
 		List<Photo> photos = photoServices.getByAlbumId(id);
 		
@@ -143,7 +143,7 @@ public class AlbumController {
 			System.out.println(bindingResult.hasErrors());
 			
 
-			return "/album/ajoutAlbum";
+			return "/album/addAlbum";
 		}
 		
 		
@@ -158,7 +158,7 @@ public class AlbumController {
 			albumServices.createAlbum(album);
 			
 			
-			return "redirect:/mes-albums";
+			return "redirect:/my-albums";
 			
 		}
 		
@@ -166,7 +166,7 @@ public class AlbumController {
 	}	
 	
 	//*************DELETE
-	@GetMapping("/mes-albums/delete/{id}")
+	@GetMapping("/my-albums/delete/{id}")
 	public String deleteAlbum(@PathVariable(value="id") Long id, Model model) {
 	
 		Optional<Album> album =albumServices.getById(id);
@@ -177,6 +177,6 @@ public class AlbumController {
 			
 			albumServices.deleteAlbum(album.get());
 		}
-		return "redirect:/mes-albums";
+		return "redirect:/my-albums";
 	}
 }

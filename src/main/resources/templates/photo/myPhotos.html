@@ -32,7 +32,7 @@
             // Nous parcourons la liste des photos
             /*<![CDATA[*/
     		
-				    /*[# th:each="photo : ${mesPhotos}"]*/
+				    /*[# th:each="photo : ${myPhotos}"]*/
 				    	/*[+
 				    	var latitude = [[${photo.latitude}]]
 				    	+]*/
@@ -43,14 +43,14 @@
 				    	// Nous ajoutons la popup. 
 				    	/*[+
 				    		var infosPhoto = 
-				    			'<h4>' + [[${photo.titre}]] + '</h4>' + 
+				    			'<h4>' + [[${photo.title}]] + '</h4>' +
 				    			'<p><img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></p>' + 
-				    			'<p>Photographe : ' + [[${photo.user} ? ${photo.user.prenom} + ' ' + ${photo.user.nom} : 'Inconnu']] + '</p>' + 
+				    			'<p>Photographe : ' + [[${photo.user} ? ${photo.user.firstname} + ' ' + ${photo.user.name} : 'Inconnu']] + '</p>' +
 				    			'<p>Date : ' + [[${photo.date}]] + '</p>' + 
 				    			'<p>' +	[[${photo.description}]] + '</p>' + 
-				    			'<p>Album : ' + [[${photo.album} ? ${photo.album.nom} : 'Inconnu']] + '</p>' +
+				    			'<p>Album : ' + [[${photo.album} ? ${photo.album.name} : 'Inconnu']] + '</p>' +
 				    			'<p><a class="btn btn-info" href="' + [[@{/edit-photo(id=${photo.id}) }]] + '"> modifier </a>' +
-				    			'<a href="' + [[@{/mes-photos/delete/{id} (id=${photo.id}) }]] + '">' + 
+				    			'<a href="' + [[@{/my-photos/delete/{id} (id=${photo.id}) }]] + '">' +
 				    		    '<button type="button" class="btn btn-danger">Supprimer</button>' + 
 				    			'</a></p>'
 				    	+]*/	

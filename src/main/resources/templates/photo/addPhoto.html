@@ -12,8 +12,8 @@
 							<img id="thumbnail" class="thumbnail" alt="image preview" />
 						</div>
 					  <div class="mb-3">
-					    <label for="titre" class="form-label">Titre</label>
-					    <input type="text" class="form-control" id="titre" name="titre">
+					    <label for="title" class="form-label">Titre</label>
+					    <input type="text" class="form-control" id="title" name="title">
 					  </div>
 					  <div class="mb-3">
 					    <label for="date" class="form-label">Date</label>
@@ -27,8 +27,8 @@
 						  	<label  class="form-label">Cliquer sur la carte pour définir le lieu de la photo</label>
 							<input type="hidden" class="form-control" id="longitude" name="longitude" value="">
 							<input type="hidden" class="form-control" id="latitude" name="latitude" value="">
-							<p>longitude : <span id="afficheLongitude"></span></p>
-							<p>latitude : <span id="afficheLatitude"></span></p>
+							<p>longitude : <span id="showLongitude"></span></p>
+							<p>latitude : <span id="showLatitude"></span></p>
 						</div>
 					  <div class="mb-3 form-check">
 					    <input type="checkbox" class="form-check-input" id="publique" name="publique">
@@ -37,18 +37,18 @@
 					  <div class="mb-3">
 					  	<label for="album" class="form-label">Choisissez un album</label>
 						  <select class="form-select" name="album">
-							  <option th:each="album:${mesAlbums}" th:value="${album.id}" 
-	                th:text="${album.nom}"></option>
+							  <option th:each="album:${myAlbums}" th:value="${album.id}"
+	                th:text="${album.name}"></option>
 							</select>
 						</div>
 						<div class="mb-3">
-						<label for="categorie" class="form-label">Choisissez une ou plusieurs catégories</label>
-						<select class="form-select" multiple name="categorie">
-						  <option th:each="categorie:${categories}" th:value="${categorie.id}" 
-	                th:text="${categorie.nom}"></option>
+						<label for="category" class="form-label">Choisissez une ou plusieurs catégories</label>
+						<select class="form-select" multiple name="category">
+						  <option th:each="category:${categories}" th:value="${category.id}"
+	                th:text="${category.name}"></option>
 						</select>
 						</div>
-					  <button type="submit" class="btn btn-primary">Submit</button>
+					  <button type="submit" class="btn btn-primary">Ajouter</button>
 					</form>
 				</div>
 			

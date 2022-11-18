@@ -22,13 +22,13 @@ public class RegisterController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/inscription")
+	@GetMapping("/signup")
 	public String register(User user) {
-		return "user/ajout";
+		return "user/add";
 	}
 
-	@PostMapping("/inscription")
-	public String ajoutUser(@Validated User user, BindingResult bindingResult, Model model) {
+	@PostMapping("/signup")
+	public String addUser(@Validated User user, BindingResult bindingResult, Model model) {
 		
 		//model.addAttribute("user", new User());
 //		if (bindingResult.hasErrors()) {
@@ -38,7 +38,7 @@ public class RegisterController {
 		
 		if(userServices.findByEmail(user.getEmail()) != null) {
 	    	bindingResult.addError(new FieldError("friend","email","Cette adresse mail existe déjà !"));
-	    	return ("user/ajout");
+	    	return ("user/add");
 	    }
 	
 	    else {

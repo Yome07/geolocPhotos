@@ -17,8 +17,8 @@ public class UserController {
 	private UserServices userServices;
 	
 	//Liste des photographes
-	@GetMapping("/liste-users")
-	public String listPhotogrpahes(Model model) {
+	@GetMapping("/list-users")
+	public String listPhotographer(Model model) {
 		List<User> users = userServices.findAll();
 		
 		model.addAttribute("users", users);

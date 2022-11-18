@@ -12,14 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Categorie {
+public class Keyword {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nom;
+	private String name;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "categorie")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "keyword")
 	private Set<Photo> photo = new HashSet<Photo>();
 
 	public Long getId() {
@@ -30,12 +30,12 @@ public class Categorie {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String nom) {
+		this.name = name;
 	}
 
 	public Set<Photo> getPhoto() {
@@ -48,9 +48,6 @@ public class Categorie {
 
 	@Override
 	public String toString() {
-		return nom;
+		return name;
 	}
-	
-	
-	
 }

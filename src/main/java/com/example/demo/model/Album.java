@@ -15,7 +15,7 @@ public class Album {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nom;
+	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -25,7 +25,7 @@ public class Album {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Album(String nom) {
+	public Album(String name) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -37,12 +37,12 @@ public class Album {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String nom) {
+		this.name = name;
 	}
 
 	public User getUser() {

@@ -15,34 +15,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Album;
-import com.example.demo.model.Categorie;
+import com.example.demo.model.Category;
 import com.example.demo.model.Photo;
 import com.example.demo.model.User;
 import com.example.demo.model.UserLogin;
-import com.example.demo.repository.CategorieRepository;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.CategorieServices;
+import com.example.demo.service.CategoryServices;
 import com.example.demo.service.PhotoServices;
 
 @Controller
-public class CategorieController {
+public class CategoryController {
 
 	@Autowired
-	private CategorieServices categorieServices;
+	private CategoryServices categoryServices;
 	
 	@Autowired
 	private PhotoServices photoServices;
 	
 	@Autowired UserRepository userRepository;
-	@Autowired CategorieRepository categorieRepository;
+	@Autowired CategoryRepository categoryRepository;
 	
-	@GetMapping("/ajout-categorie")
-	public String ajoutCategorie() {
-		return "/categorie/form";
+	@GetMapping("/add-category")
+	public String addCategory() {
+		return "/category/form";
 	}
 	
-	@PostMapping("/ajout-categorie")
-	public String ajoutCategorie(@Validated Categorie categorie, BindingResult bindingResult) {
+	@PostMapping("/add-category")
+	public String addCategory(@Validated Category category, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
@@ -53,55 +53,55 @@ public class CategorieController {
 		
 		if (username != null) {
 			
-			categorieServices.createCategorie(categorie);
+			categoryServices.createCategory(category);
 			
 			return "redirect:/";
 		}
 		
-		return "categorie/ajout";
+		return "category/add";
 	}
 	
 	// liste de toutes les catégories
-	@GetMapping("/liste-categories")
+	@GetMapping("/list-categories")
 	public String list(Model model) {
 		
 		
-		List<Categorie> categories = categorieServices.findAll();
+		List<Category> categories = categoryServices.findAll();
 		
 		model.addAttribute("categories", categories);
 		
-		return "categorie/list";
+		return "category/list";
 		
 	}
 	
 	// liste des photos par catégorie
-	@GetMapping("/liste-photos-par-categorie/{id}")
-	public String listPhotosByCategorie(Model model, @PathVariable(value="id") Long id) {
-		List<Photo> photos = photoServices.getByCategorieId(id);
+	@GetMapping("/list-photos-by-category/{id}")
+	public String listPhotosByCategory(Model model, @PathVariable(value="id") Long id) {
+		List<Photo> photos = photoServices.getByCategoryId(id);
 		
 		model.addAttribute("photos", photos);
 		System.out.println(photos);
 		
-		return "categorie/listPhotos";
+		return "category/listPhotos";
 	}
 	
 	//************EDIT
-		@GetMapping("/edit-categorie")
-		public String editCategorie(@RequestParam(value = "id", required = false) Long id,Model model) {
+		@GetMapping("/edit-category")
+		public String editCategory(@RequestParam(value = "id", required = false) Long id,Model model) {
 			
 			if(id != null) {
-				Optional<Categorie> categorie = categorieServices.getById(id);
-				if(categorie.isPresent()) {
-					model.addAttribute("categorie", categorie.get());
+				Optional<Category> category = categoryServices.getById(id);
+				if(category.isPresent()) {
+					model.addAttribute("category", category.get());
 				}
 			}
 			
 			
-			return "categorie/editCategorie";
+			return "category/editCategory";
 		}
 		
-		@PostMapping("/edit-categorie")
-		public String editCategorie(@Validated Categorie categorie, BindingResult bindingResult,  
+		@PostMapping("/edit-category")
+		public String editCategory(@Validated Category category, BindingResult bindingResult,
 				@RequestParam("id") Optional<Long> id)  {
 			
 			
@@ -110,29 +110,29 @@ public class CategorieController {
 				System.out.println(bindingResult.hasErrors());
 				
 
-				return "categorie/ajoutCategorie";
+				return "category/addCategory";
 			}
 			
 
 			
-			categorieServices.createCategorie(categorie);
+			categoryServices.createCategory(category);
 			
 			
-			return "redirect:/liste-categories";
+			return "redirect:/list-categories";
 		}	
 		
 		//*************DELETE
-		@GetMapping("/liste-categories/delete/{id}")
-		public String deleteCategorie(@PathVariable(value="id") Long id, Model model) {
+		@GetMapping("/list-categories/delete/{id}")
+		public String deleteCategory(@PathVariable(value="id") Long id, Model model) {
 		
-			Optional<Categorie> categorie =categorieServices.getById(id);
+			Optional<Category> category =categoryServices.getById(id);
 			
-			List<Photo> photos = photoServices.getByCategorieId(id);
+			List<Photo> photos = photoServices.getByCategoryId(id);
 			
-			if(photos.isEmpty() && categorie.isPresent()) {
+			if(photos.isEmpty() && category.isPresent()) {
 				
-				categorieServices.deleteCategorie(categorie.get());
+				categoryServices.deleteCategory(category.get());
 			}
-			return "redirect:/liste-categories";
+			return "redirect:/list-categories";
 		}
 }

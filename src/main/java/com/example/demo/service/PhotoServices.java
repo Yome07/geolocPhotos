@@ -43,8 +43,8 @@ public class PhotoServices {
 		return photoRepository.findByAlbumId(id);
 	}
 	
-	public List<Photo> getByCategorieId(Long id) {
-		return photoRepository.findByCategorieId(id);
+	public List<Photo> getByCategoryId(Long id) {
+		return photoRepository.findByCategoryId(id);
 	}
 
 }

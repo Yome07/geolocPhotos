@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.Album;
-import com.example.demo.model.Categorie;
+import com.example.demo.model.Category;
 import com.example.demo.model.Photo;
 import com.example.demo.model.User;
 import com.example.demo.model.UserLogin;
 import com.example.demo.service.AlbumServices;
-import com.example.demo.service.CategorieServices;
+import com.example.demo.service.CategoryServices;
 import com.example.demo.service.PhotoServices;
 import com.example.demo.service.UserServices;
 
@@ -45,11 +45,11 @@ public class PhotoController {
 	private AlbumServices albumServices;
 	
 	@Autowired
-	private CategorieServices categorieServices;
+	private CategoryServices categoryServices;
 	
 	
 	
-	@GetMapping("/ajout-photo")
+	@GetMapping("/add-photo")
 	public String addPhoto(Model model) {
 		
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -58,18 +58,18 @@ public class PhotoController {
 			User user = new User();
 			user = userServices.findByEmail(username);
 			
-			List<Album> mesAlbums = albumServices.getAlbumsByUserId(user.getId());
-			model.addAttribute("mesAlbums", mesAlbums);
+			List<Album> myAlbums = albumServices.getAlbumsByUserId(user.getId());
+			model.addAttribute("myAlbums", myAlbums);
 		}
 		
-		List<Categorie> categories = categorieServices.findAll();
+		List<Category> categories = categoryServices.findAll();
 
 		model.addAttribute("categories", categories);
 		
-		return "photo/ajoutPhoto";
+		return "photo/addPhoto";
 	}
 	
-	@PostMapping("/ajout-photo")
+	@PostMapping("/add-photo")
 	public String addPhoto(@Validated Photo photo, BindingResult bindingResult,  
 			@RequestParam("id") Optional<Long> id,
 			@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
@@ -80,7 +80,7 @@ public class PhotoController {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
 			System.out.println(bindingResult.getFieldError());
-			return "/photo/ajoutPhoto";
+			return "/photo/addPhoto";
 		}
 				
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication()
@@ -111,14 +111,14 @@ public class PhotoController {
 				throw new IOException("Impossible de sauvegarder le fichier : " + fileName, e);
 			}
 			
-			return "redirect:/mes-photos";
+			return "redirect:/my-photos";
 		}
 		
 		return "home";
 	}
 	
 	//Liste des photos
-	@GetMapping("/liste-photos")
+	@GetMapping("/list-photos")
 	public String listPhotos(Model model) {
 		List<Photo> photos = photoServices.findAll();
 		
@@ -127,24 +127,24 @@ public class PhotoController {
 	}
 	
 	// affichage de mes photos
-		@GetMapping("/mes-photos")
+		@GetMapping("/my-photos")
 		public String mesPhotos(Photo photo, @RequestParam(value = "id", required = false) Long id, Model model) {
 			String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
 			User user = new User();
 			user = userServices.findByEmail(username);
 
-			List<Photo> mesPhotos = photoServices.getByUserId(user.getId());
+			List<Photo> myPhotos = photoServices.getByUserId(user.getId());
 
-			model.addAttribute("mesPhotos", mesPhotos);
+			model.addAttribute("myPhotos", myPhotos);
 			
-			return "photo/mesPhotos";
+			return "photo/myPhotos";
 			
 		}
 		
 		// affichage de mes photos en liste
-				@GetMapping("/mes-photos-liste")
-				public String mesPhotosListe(Photo photo, @RequestParam(value = "id", required = false) Long id, Model model) {
+				@GetMapping("/my-photos-list")
+				public String myPhotosList(Photo photo, @RequestParam(value = "id", required = false) Long id, Model model) {
 					String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
 					User user = new User();
@@ -170,11 +170,11 @@ public class PhotoController {
 				User user = new User();
 				user = userServices.findByEmail(username);
 				
-				List<Album> mesAlbums = albumServices.getAlbumsByUserId(user.getId());
-				model.addAttribute("mesAlbums", mesAlbums);
+				List<Album> myAlbums = albumServices.getAlbumsByUserId(user.getId());
+				model.addAttribute("myAlbums", myAlbums);
 			}
 			
-			List<Categorie> categories = categorieServices.findAll();
+			List<Category> categories = categoryServices.findAll();
 
 			model.addAttribute("categories", categories);
 			
@@ -199,7 +199,7 @@ public class PhotoController {
 				System.out.println(bindingResult.hasErrors());
 				
 
-				return "/photo/ajoutPhoto";
+				return "/photo/addPhoto";
 			}
 			
 			
@@ -214,7 +214,7 @@ public class PhotoController {
 				photoServices.createPhoto(photo);
 				
 				
-				return "redirect:/mes-photos";
+				return "redirect:/my-photos";
 				
 			}
 			
@@ -223,7 +223,7 @@ public class PhotoController {
 		
 		
 		//*************DELETE
-		@GetMapping("/mes-photos/delete/{id}")
+		@GetMapping("/my-photos/delete/{id}")
 		public String deletePhoto(@PathVariable(value="id") Long id, Model model) {
 		
 			Optional<Photo> photo =photoServices.getById(id);
@@ -232,6 +232,6 @@ public class PhotoController {
 				
 				photoServices.deletePhoto(photo.get());
 			}
-			return "redirect:/mes-photos";
+			return "redirect:/my-photos";
 		}
 }

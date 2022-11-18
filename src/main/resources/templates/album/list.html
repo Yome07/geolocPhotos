@@ -13,8 +13,8 @@
 						  <tbody>
 						    <tr th:each="album:${albums}">
 						      <th scope="row" th:text="${album.id}"></th>
-						      <td th:text="${album.nom}"></td>
-						      <td th:text="${album.user} ? ${album.user.prenom} + ' ' + ${album.user.nom} : 'Inconnu' "></td>
+						      <td th:text="${album.name}"></td>
+						      <td th:text="${album.user} ? ${album.user.firstname} + ' ' + ${album.user.name} : 'Inconnu' "></td>
 						    </tr>
 						  </tbody>
 						</table>	

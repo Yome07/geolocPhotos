@@ -18,10 +18,10 @@ public class User {
 	private Long id;
 	
 	@NotNull(message = "Champ obligatoire")
-	private String nom; 
+	private String name;
 	
 	@NotNull(message = "Champ obligatoire")
-	private String prenom;
+	private String firstname;
 	
 	@Email(message = "Adresse email non valide")
 	@NotEmpty(message = "Adresse email obligatoire")
@@ -29,7 +29,7 @@ public class User {
 	private String email;
 	     
 	
-	@NotNull(message = "password may not be null")     
+	@NotNull(message = "le mot de passe ne peut être vide")
 	//Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;.',?/~$^+=<>]).{8,5000}$",
 	//message = "Le mot de passe doit contenir des minuscules, majuscules, des chiffres et des caractères spéciaux")
 	//Length(min =8, max = 100)
@@ -50,20 +50,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getEmail() {

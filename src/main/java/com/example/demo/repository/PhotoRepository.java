@@ -14,5 +14,5 @@ public interface PhotoRepository extends JpaRepository<Photo, Long>{
 	
 	List<Photo> findByAlbumId(Long id);
 	
-	List<Photo> findByCategorieId(Long id);
+	List<Photo> findByCategoryId(Long id);
 }
