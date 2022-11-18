@@ -12,7 +12,7 @@
     var lon = 2.349903;
     var macarte = null;
     var markerClusters; // Servira à stocker les groupes de marqueurs
-        
+
     // Fonction d'initialisation de la carte
         function initMap() {
         	var markers = []; // Nous initialisons la liste des marqueurs
@@ -21,7 +21,7 @@
 	// Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
             macarte = L.map('map').setView([lat, lon], 11);
            markerClusters = L.markerClusterGroup(); // Nous initialisons les groupes de marqueurs
-            // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. 
+            // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut.
             // Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
             L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
                 // Il est toujours bien de laisser le lien vers la source des données
@@ -31,7 +31,7 @@
             }).addTo(macarte);
             // Nous parcourons la liste des photos
             /*<![CDATA[*/
-    		
+
 				    /*[# th:each="photo : ${myPhotos}"]*/
 				    	/*[+
 				    	var latitude = [[${photo.latitude}]]
@@ -40,35 +40,35 @@
 				    	var longitude = [[${photo.longitude}]]
 				    	+]*/
 				    	var marker = L.marker([latitude,longitude]);
-				    	// Nous ajoutons la popup. 
+				    	// Nous ajoutons la popup.
 				    	/*[+
-				    		var infosPhoto = 
+				    		var infosPhoto =
 				    			'<h4>' + [[${photo.title}]] + '</h4>' +
-				    			'<p><img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></p>' + 
+				    			'<p><img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></p>' +
 				    			'<p>Photographe : ' + [[${photo.user} ? ${photo.user.firstname} + ' ' + ${photo.user.name} : 'Inconnu']] + '</p>' +
-				    			'<p>Date : ' + [[${photo.date}]] + '</p>' + 
-				    			'<p>' +	[[${photo.description}]] + '</p>' + 
+				    			'<p>Date : ' + [[${photo.date}]] + '</p>' +
+				    			'<p>' +	[[${photo.description}]] + '</p>' +
 				    			'<p>Album : ' + [[${photo.album} ? ${photo.album.name} : 'Inconnu']] + '</p>' +
 				    			'<p><a class="btn btn-info" href="' + [[@{/edit-photo(id=${photo.id}) }]] + '"> modifier </a>' +
 				    			'<a href="' + [[@{/my-photos/delete/{id} (id=${photo.id}) }]] + '">' +
-				    		    '<button type="button" class="btn btn-danger">Supprimer</button>' + 
+				    		    '<button type="button" class="btn btn-danger">Supprimer</button>' +
 				    			'</a></p>'
-				    	+]*/	
-				    		
+				    	+]*/
+
 				    	marker.bindPopup(infosPhoto);
 				    	markerClusters.addLayer(marker); // Nous ajoutons le marqueur aux groupes
 						markers.push(marker); // Nous ajoutons le marqueur à la liste des marqueurs
 				    /*[/]*/
 			/*]]>*/
-	
+
 	var group = new L.featureGroup(markers); // Nous créons le groupe des marqueurs pour adapter le zoom
-	macarte.fitBounds(group.getBounds().pad(0.5)); // Nous demandons à ce que tous les marqueurs soient visibles, 
+	macarte.fitBounds(group.getBounds().pad(0.5)); // Nous demandons à ce que tous les marqueurs soient visibles,
 													// et ajoutons un padding (pad(0.5)) pour que les marqueurs ne soient pas coupés
 	macarte.addLayer(markerClusters);
         }
     window.onload = function(){
 	// Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-	initMap(); 
+	initMap();
     };
     </script>
     
