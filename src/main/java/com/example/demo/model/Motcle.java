@@ -12,14 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Categorie {
+public class Motcle {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nom;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "categorie")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "motcle")
 	private Set<Photo> photo = new HashSet<Photo>();
 
 	public Long getId() {
@@ -50,7 +50,4 @@ public class Categorie {
 	public String toString() {
 		return nom;
 	}
-	
-	
-	
 }

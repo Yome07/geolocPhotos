@@ -56,6 +56,14 @@ public class Photo {
 			inverseJoinColumns = @JoinColumn(name = "categorie_id", referencedColumnName = "id")
 			)
 	private Set<Categorie> categorie = new HashSet<Categorie>();
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinTable(
+			name = "photo_motcle",
+			joinColumns = @JoinColumn(name = "photo_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "motcle_id", referencedColumnName = "id")
+			)
+	private Set<Motcle> motcle = new HashSet<Motcle>();
 
 	public Long getId() {
 		return id;
