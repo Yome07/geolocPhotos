@@ -46,5 +46,4 @@ public class PhotoServices {
 	public List<Photo> getByCategoryId(Long id) {
 		return photoRepository.findByCategoryId(id);
 	}
-
 }
