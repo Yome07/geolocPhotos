@@ -28,7 +28,7 @@
 			      <td th:text="${photo.title}"> </td>
 			      <td th:text="${photo.description}"> </td>
 			      <td th:text="${photo.fileName}"> </td>
-			      <td th:text="${photo.date}"> </td>
+			      <td th:text="${ #dates.format(photo.date, 'dd MMMM YYYY') }"> </td>
 			      <td th:text="${photo.latitude}"> </td>
 			      <td th:text="${photo.longitude}"> </td>
 			      <td th:text="${photo.publique} ? 'publique' : 'privée'"> </td>
