@@ -20,7 +20,7 @@ var macarte = null;
 
         function onMapClick(e) {
 		
-            L.marker([e.latlng.lat, e.latlng.lng]).addTo(macarte).bindPopup('Vous avez cliquez sur la carte à la position ' + e.latlng.toString()).openPopup;
+            L.marker([e.latlng.lat, e.latlng.lng]).addTo(macarte).bindPopup('Vous avez cliqué sur la carte à la position ' + e.latlng.toString()).openPopup;
             document.getElementById('latitude').value = e.latlng.lat;
             document.getElementById('longitude').value = e.latlng.lng;
             document.getElementById('showLatitude').innerHTML = e.latlng.lat;
