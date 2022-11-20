@@ -43,8 +43,8 @@
 				    	var marker = L.marker([latitude,longitude]);
 				    	// Nous ajoutons la popup.
 				    	/*[+
-				    		var infosPhoto = '<h4>' + [[${photo.title}]] + '</h4><p><img class="thumbnail" src="' +
-				    		[[@{${photo.FileNameImagePath}}]] + '"/></p><p>Photographe : ' + [[${photo.user} ? ${photo.user.firstname} + ' ' + ${photo.user.name} : 'Inconnu']] + '</p><p>Date : ' + [[${ #dates.format(photo.date, 'dd MMMM YYYY') }]] + '</p><p>' +
+				    		var infosPhoto = '<h4>' + [[${photo.title}]] + '</h4><p><a href="' + [[@{${photo.FileNameImagePath}}]] + '" data-toggle="lightbox" data-caption="' + [[${photo.title}]] + '">' +
+				    			    '<img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></a></p><p>Photographe : ' + [[${photo.user} ? ${photo.user.firstname} + ' ' + ${photo.user.name} : 'Inconnu']] + '</p><p>Date : ' + [[${ #dates.format(photo.date, 'dd MMMM YYYY') }]] + '</p><p>' +
 				    		[[${photo.description}]] + '</p><p>Album : ' + [[${photo.album} ? ${photo.album.name} : 'Inconnu']] + '</p>'
 				    	+]*/
 				    	marker.bindPopup(infosPhoto);

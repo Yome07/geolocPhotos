@@ -44,7 +44,8 @@
 				    	/*[+
 				    		var infosPhoto =
 				    			'<h4>' + [[${photo.title}]] + '</h4>' +
-				    			'<p><img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></p>' +
+				    			'<p><a href="' + [[@{${photo.FileNameImagePath}}]] + '" data-toggle="lightbox" data-caption="' + [[${photo.title}]] + '">' +
+				    			    '<img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></a></p>' +
 				    			'<p>Photographe : ' + [[${photo.user} ? ${photo.user.firstname} + ' ' + ${photo.user.name} : 'Inconnu']] + '</p>' +
 				    			'<p>Date : ' + [[${photo.date}]] + '</p>' +
 				    			'<p>' +	[[${photo.description}]] + '</p>' +
