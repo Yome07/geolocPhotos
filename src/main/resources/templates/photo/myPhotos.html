@@ -1,10 +1,21 @@
 <th:block th:insert="fragments/header::header"></th:block>    
-      <div id="map"></div>
+    <div id="map"></div>
+<!--    <div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog">-->
+<!--            <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true">×</button>-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-body">-->
+<!--                    <img src="" alt="" />-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
  
     <!-- Fichiers Javascript -->
 	
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js'></script>
+    <script type='text/javascript' th:src="@{js/lightbox.js}"></script>
     <!-- <script type='text/javascript'th:src="@{js/initLeaflet.js}"></script>-->
 	<script th:inline="javascript">
 	// On initialise la latitude et la longitude de Paris (centre de la carte)
@@ -44,8 +55,9 @@
 				    	/*[+
 				    		var infosPhoto =
 				    			'<h4>' + [[${photo.title}]] + '</h4>' +
-				    			'<p><a href="' + [[@{${photo.FileNameImagePath}}]] + '" data-toggle="lightbox" data-caption="' + [[${photo.title}]] + '">' +
-				    			    '<img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/></a></p>' +
+				    			'<p><!--<a href="#"  data-toggle="modal" data-target="#lightbox">-->' +
+				    			    '<img class="thumbnail" src="' + [[@{${photo.FileNameImagePath}}]] + '"/>' +
+				    			'<!--/a--></p>' +
 				    			'<p>Photographe : ' + [[${photo.user} ? ${photo.user.firstname} + ' ' + ${photo.user.name} : 'Inconnu']] + '</p>' +
 				    			'<p>Date : ' + [[${photo.date}]] + '</p>' +
 				    			'<p>' +	[[${photo.description}]] + '</p>' +
@@ -72,7 +84,7 @@
 	initMap();
     };
     </script>
-    
+
     
 </body>
 </html>
