@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### répertoire photo-files/ ###
+!**/src/main/resources/static/photo-files/
