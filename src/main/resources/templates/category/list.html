@@ -20,11 +20,24 @@
 					      	</a>
 					      </td>
 					      <td>
-					      	<a class="btn btn-danger" th:href="@{/list-categories/delete/{id} (id=${category.id}) }"
-					      	role="button">
-					      		Supprimer
-					      	</a>
+							  <button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete'+*{category.id}">
+								  Supprimer
+							  </button>
 					      </td>
+							<!-- Modal -->
+							<div class="modal fade" th:id="*{'delete'+{category.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											<p>Voulez-vous vraiment supprimer la catégorie <span th:text="${category.name}"></span> ?</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+											<a class="btn btn-danger" th:href="@{/list-categories/delete/{id} (id=${category.id}) }" role="button">Supprimer</a>
+										</div>
+									</div>
+								</div>
+							</div>
 					    </tr>
 					  </tbody>
 					</table>			

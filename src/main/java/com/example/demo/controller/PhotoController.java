@@ -1,11 +1,10 @@
 	package com.example.demo.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,7 +79,7 @@ public class PhotoController {
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
 			System.out.println(bindingResult.getFieldError());
-			return "/photo/addPhoto";
+			return "photo/addPhoto";
 		}
 				
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication()
@@ -199,7 +198,7 @@ public class PhotoController {
 				System.out.println(bindingResult.hasErrors());
 				
 
-				return "/photo/addPhoto";
+				return "photo/addPhoto";
 			}
 			
 			
@@ -224,13 +223,25 @@ public class PhotoController {
 		
 		//*************DELETE
 		@GetMapping("/my-photos/delete/{id}")
-		public String deletePhoto(@PathVariable(value="id") Long id, Model model) {
+		public String deletePhoto(@PathVariable(value="id") Long id, Model model) throws IOException {
 		
 			Optional<Photo> photo =photoServices.getById(id);
-			
+			Path path = Paths.get("src/main/resources/static/photos-files/" + id + "/");
+
 			if((photo).isPresent()) {
 				
 				photoServices.deletePhoto(photo.get());
+				try {
+					Files.walk(path)
+							.sorted(Comparator.reverseOrder())
+							.map(Path::toFile)
+							.forEach(File::delete);
+					System.out.println("File or directory deleted successfully");
+				} catch (NoSuchFileException ex) {
+					System.out.printf("No such file or directory: %s\n", path);
+				} catch (IOException ex) {
+					System.out.println(ex);
+				}
 			}
 			return "redirect:/my-photos";
 		}

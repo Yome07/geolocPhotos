@@ -6,6 +6,9 @@
    				<div class=p-3>
     				<h1>Connexion</h1>
     				<form method="post">
+						<div class="mb-3" th:if="${param.error}">
+							<p class="alert alert-danger" role="alert">Adresse email ou mot de passe incorrect</p>
+						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label">Adresse Email</label>
 							<input type="email" class="form-control" id="email" name="email">

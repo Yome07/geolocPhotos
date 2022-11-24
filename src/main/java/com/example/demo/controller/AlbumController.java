@@ -47,10 +47,10 @@ public class AlbumController {
 	@PostMapping("/add-album")
 	public String addAlbum(@Validated Album album, BindingResult bindingResult) {
 		
-//		if (bindingResult.hasErrors()) {
-//			System.out.println(bindingResult.hasErrors());
-//			return "album/form";
-//		}
+		if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult.hasErrors());
+			return "album/form";
+		}
 		
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 		

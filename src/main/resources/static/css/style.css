@@ -55,6 +55,10 @@ nav .navbar-text a.btn-light {
 	max-width:250px;
 }
 
+.modal-backdrop {
+    z-index:1 !important;
+}
+
 /*** Lightbox ***/
 #lightbox .modal-content {
     display: inline-block;
