@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,9 +28,18 @@ public class Album {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Album(String name) {
-		// TODO Auto-generated constructor stub
+	
+	public Album(String name, User user) {
+		super();
+		this.name = name;
+		this.user = user;
 	}
+	
+	public Album(String name) {
+		super();
+		this.name = name;
+	}
+
 
 	public Long getId() {
 		return id;

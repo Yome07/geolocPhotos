@@ -1,16 +1,15 @@
 package com.example.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -41,6 +40,25 @@ public class User {
 	private float longDefault;
 	
 	private boolean role;
+
+
+	public User() {
+	}
+
+	public User(String name, String firstname, String email, String password, float latDefault, float longDefault, boolean role) {
+		this.name = name;
+		this.firstname = firstname;
+		this.email = email;
+		this.password = password;
+		this.latDefault = latDefault;
+		this.longDefault = longDefault;
+		this.role = role;
+	}
+
+	public User(
+		@Email(message = "Adresse email non valide") @NotEmpty(message = "Adresse email obligatoire") String email) {
+		this.email = email;
+	}
 
 	public Long getId() {
 		return id;
