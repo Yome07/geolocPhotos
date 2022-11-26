@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,13 +23,11 @@ import com.example.demo.service.UserServices;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class UserTests {
+public class UserServiceTests {
 
     @Autowired
     private UserServices userServices;
-    
-    String email = "email@test.fr";
-    
+
     @Test
     @Rollback(false)
     @Order(1)
@@ -44,7 +42,7 @@ public class UserTests {
     @Order(2)
     public void testCreateUser() {
         User user = new User("Dupont","Jean",
-                email,"1234", (float) 45.34,
+                "email@test.fr","1234", (float) 45.34,
                 (float) -10.12,true);
         List<User> users = userServices.findAll();
         userServices.createUser(user);
@@ -56,7 +54,8 @@ public class UserTests {
     @Test
     @Rollback(false)
     @Order(3)
-    public void testEmailExists() { 
+    public void testEmailExists() {
+        String email = "email@test.fr";
         User user = userServices.findByEmail(email);
 
         assertNotNull(user);
@@ -76,6 +75,7 @@ public class UserTests {
     @Rollback(false)
     @Order(5)
     public void testUpdateUser() {
+        String email = "email@test.fr";
         User user = userServices.findByEmail(email);
         user.setName("Martin");
 
@@ -98,12 +98,18 @@ public class UserTests {
     @Rollback(false)
     @Order(7)
     public void testDeleteUser() {
+        String email = "email@test.fr";
+
         User userExists = userServices.findByEmail(email);
+
         userServices.deleteUser(userExists);
+
         User userDoesntExist = userServices.findByEmail(email);
 
         assertNotNull(userExists);
         assertNull(userDoesntExist);
 
     }
+    
+    
 }
