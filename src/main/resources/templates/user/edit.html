@@ -1,0 +1,49 @@
+<div th:insert="fragments/header::header"></div>
+	    
+   					<div class="formulaire p-3">
+   						<h1>Inscription</h1>
+						<form method="post" th:object="${user}">
+						  <div class="mb-3">
+						    <label for="name" class="form-label">Nom</label>
+						    <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+						  </div>
+						  <div class="mb-3">
+						    <label for="firstname" class="form-label">Prénom</label>
+						    <input type="text" class="form-control" id="firstname" name="firstname" th:field="*{firstname}">
+						  </div>
+						  <div class="mb-3">
+						    <label for="email" class="form-label">Email</label>
+						    <input type="text" class="form-control" id="email" name="email" th:field="*{email}">
+						    <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+						  </div>
+						  <!-- <input type="hidden" class="form-control" id="oldEmail" name="oldEmail" th:field=*{email}/>-->
+						  <div class="mb-3">
+						    <label  class="form-label">Mot de passe </label>
+						    <input type="password" class="form-control" name="password" th:field="*{password}">
+						    <div id="passwordHelpBlock" class="form-text">
+								Votre mot de passe doit contenir entre 8 et 100 caractères avec des minuscules, majuscules, chiffres, caractères spéciaux 
+							</div>
+						    <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+						  </div>
+						  <div class="mb-3">
+						  	<label  class="form-label">Cliquer sur la carte pour définir votre lieu par défaut</label>
+							<input type="hidden" class="form-control" id="longitude" name="longDefault" value="" th:field="*{longDefault}">
+							<input type="hidden" class="form-control" id="latitude" name="latDefault" value="" th:field="*{latDefault}">
+							<p>longitude : <span id="showLongitude"></span></p>
+							<p>latitude : <span id="showLatitude"></span></p>
+						</div>
+						
+						
+						  <button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				
+		
+	   	<div id="map"></div>
+	 
+	    <!-- Fichiers Javascript -->
+	
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <script type='text/javascript'th:src="@{js/ajout.js}"></script>
+	</body>
+</html>

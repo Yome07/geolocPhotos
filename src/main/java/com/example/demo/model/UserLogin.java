@@ -70,5 +70,9 @@ public class UserLogin implements UserDetails {
 	public boolean isAdmin() {
 		return user.isRole();
 	}
+	
+	public Long getId() {
+		return user.getId();
+	}
 
 }

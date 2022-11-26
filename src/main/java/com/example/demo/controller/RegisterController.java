@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.User;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserServices;
 
 @Controller
@@ -19,8 +18,6 @@ public class RegisterController {
 	@Autowired
 	private UserServices userServices;
 	
-	@Autowired
-	private UserRepository userRepository;
 	
 	@GetMapping("/signup")
 	public String register(User user) {
@@ -28,16 +25,16 @@ public class RegisterController {
 	}
 
 	@PostMapping("/signup")
-	public String addUser(@Validated User user, BindingResult bindingResult, Model model) {
+	public String addUser(@Validated User user, BindingResult bindingResult) {
 		
 		//model.addAttribute("user", new User());
-//		if (bindingResult.hasErrors()) {
-//			System.out.println(bindingResult.hasErrors());
-//			return "user/ajout";
-//		}
+		if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult.hasErrors());
+			return "user/add";
+		}
 		
 		if(userServices.findByEmail(user.getEmail()) != null) {
-	    	bindingResult.addError(new FieldError("friend","email","Cette adresse mail existe déjà !"));
+	    	bindingResult.addError(new FieldError("friend","email","Cette adresse email existe déjà !"));
 	    	return ("user/add");
 	    }
 	

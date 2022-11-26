@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.model.Album;
 import com.example.demo.model.Category;
 import com.example.demo.model.Photo;
-import com.example.demo.model.User;
 import com.example.demo.model.UserLogin;
 import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.CategoryServices;
 import com.example.demo.service.PhotoServices;
 
@@ -33,7 +30,7 @@ public class CategoryController {
 	@Autowired
 	private PhotoServices photoServices;
 	
-	@Autowired UserRepository userRepository;
+
 	@Autowired CategoryRepository categoryRepository;
 	
 	@GetMapping("/add-category")

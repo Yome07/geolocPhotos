@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.model.Photo;
 import com.example.demo.repository.PhotoRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.PhotoServices;
 
 @Controller
@@ -18,7 +17,7 @@ public class HomeController {
 	@Autowired
 	private PhotoServices photoServices;
 	
-	@Autowired UserRepository userRepository;
+
 	@Autowired PhotoRepository photoRepository;
 	
 

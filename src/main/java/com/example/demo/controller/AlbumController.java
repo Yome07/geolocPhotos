@@ -18,8 +18,6 @@ import com.example.demo.model.Album;
 import com.example.demo.model.Photo;
 import com.example.demo.model.User;
 import com.example.demo.model.UserLogin;
-import com.example.demo.repository.AlbumRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.AlbumServices;
 import com.example.demo.service.PhotoServices;
 import com.example.demo.service.UserServices;
@@ -36,8 +34,6 @@ public class AlbumController {
 	@Autowired
 	private PhotoServices photoServices;
 	
-	@Autowired UserRepository userRepository;
-	@Autowired AlbumRepository albumRepository;
 	
 	@GetMapping("/add-album")
 	public String addAlbum() {
@@ -56,7 +52,7 @@ public class AlbumController {
 		
 		if (username != null) {
 			User user = new User();
-			user = userRepository.findByEmail(username);
+			user = userServices.findByEmail(username);
 			
 			album.setUser(user);
 			
@@ -74,7 +70,7 @@ public class AlbumController {
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
 		User user = new User();
-		user = userRepository.findByEmail(username);
+		user = userServices.findByEmail(username);
 
 		List<Album> myAlbums = albumServices.getAlbumsByUserId(user.getId());
 

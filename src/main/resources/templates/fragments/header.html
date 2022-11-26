@@ -65,22 +65,30 @@
               </li>
               
             </ul>
-            <span class="navbar-text">
+            <div class="navbar-text">
             	<span th:text="${session.name}">John Doe</span>
-            	<span sec:authorize="isAuthenticated()"> 
-            		<span th:text="${#authentication.getPrincipal().getFullName()}" > </span>
+            	<div class="d-flex" sec:authorize="isAuthenticated()"> 
+            		<div class="dropdown mx-1" >
+					  <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					    <span th:text="${#authentication.getPrincipal().getFullName()}" > </span>
+					  </a>
+					  <ul class="dropdown-menu  dropdown-menu-dark">
+					    <li><a class="dropdown-item" th:href="@{/edit-user/(id=${#authentication.getPrincipal().getId()})}">Voir mes informations</a></li>
+					  </ul>
+					</div>
+            		
             		<a class="btn btn-danger" th:href="@{/logout}">Déconnexion</a>
             		<!-- <script type="text/javascript">
             			var lat = [[${#authentication.getPrincipal().getLatitude()}]];
             			var lon = [[${#authentication.getPrincipal().getLongitude()}]];
             		</script>-->
-				</span> 
+				</div> 
 				<span sec:authorize="isAnonymous()">
 					<a class="btn btn-outline-light" th:href="@{/login}" role="button">Connexion</a>
               		<a class="btn btn-light" th:href="@{/signup}"  role="button">Inscription</a>
               		
               	</span>
-            </span>
+            </div>
           </div>
         </div>
     </nav>

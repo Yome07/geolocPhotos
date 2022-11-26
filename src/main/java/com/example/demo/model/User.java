@@ -1,15 +1,17 @@
 package com.example.demo.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class User {
@@ -26,12 +28,15 @@ public class User {
 	@NotEmpty(message = "Adresse email obligatoire")
 	@Column(name="email", length=255, nullable=false, unique=true)
 	private String email;
+	
+	@Transient
+	private String oldEmail;
 	     
 	
 	@NotNull(message = "le mot de passe ne peut être vide")
-	//Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;.',?/~$^+=<>]).{8,5000}$",
+	// @Pattern(regexp = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[!@#&()–[{}]:;.',?/~$^+=<>]).{8,5000}$",
 	//message = "Le mot de passe doit contenir des minuscules, majuscules, des chiffres et des caractères spéciaux")
-	//Length(min =8, max = 100)
+	// @Length(min =8, max = 100)
 	
 	private String password;
 	
@@ -55,8 +60,7 @@ public class User {
 		this.role = role;
 	}
 
-	public User(
-		@Email(message = "Adresse email non valide") @NotEmpty(message = "Adresse email obligatoire") String email) {
+	public User(String email) {
 		this.email = email;
 	}
 
@@ -91,6 +95,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getOldEmail() {
+		return oldEmail;
+	}
+	
+	public void setOldEmail(String oldEmail) {
+		this.oldEmail = oldEmail;
+	}
 
 	public String getPassword() {
 		return password;
@@ -122,6 +134,13 @@ public class User {
 
 	public void setRole(boolean role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", firstname=" + firstname + ", email=" + email + ", oldEmail="
+				+ oldEmail + ", password=" + password + ", latDefault=" + latDefault + ", longDefault=" + longDefault
+				+ ", role=" + role + "]";
 	}
 	
 	
