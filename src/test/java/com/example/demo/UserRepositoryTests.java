@@ -32,7 +32,7 @@ public class UserRepositoryTests {
     @Rollback(false)
     @Order(1)
     public void testCreateUser() {
-        User user = new User("Dupont","Jean","email@test.fr","1234", (float) 45.34, (float) -10.12,true);
+        User user = new User("Dupont","Jean","email@test.fr","#azQS23423@aAZ", (float) 45.34, (float) -10.12,true);
         User savedUser = userRepository.save(user);
 
         assertNotNull(savedUser);
