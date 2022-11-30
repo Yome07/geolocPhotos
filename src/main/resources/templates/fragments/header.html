@@ -76,7 +76,6 @@
 					    <li><a class="dropdown-item" th:href="@{/edit-user/(id=${#authentication.getPrincipal().getId()})}">Voir mes informations</a></li>
 					  </ul>
 					</div>
-            		
             		<a class="btn btn-danger" th:href="@{/logout}">Déconnexion</a>
             		<!-- <script type="text/javascript">
             			var lat = [[${#authentication.getPrincipal().getLatitude()}]];
@@ -86,7 +85,6 @@
 				<span sec:authorize="isAnonymous()">
 					<a class="btn btn-outline-light" th:href="@{/login}" role="button">Connexion</a>
               		<a class="btn btn-light" th:href="@{/signup}"  role="button">Inscription</a>
-              		
               	</span>
             </div>
           </div>

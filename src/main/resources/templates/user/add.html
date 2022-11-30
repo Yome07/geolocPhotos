@@ -5,11 +5,11 @@
 						<form method="post" th:object="${user}">
 						  <div class="mb-3">
 						    <label for="name" class="form-label">Nom</label>
-						    <input type="text" class="form-control" id="name" name="name">
+						    <input type="text" class="form-control" id="name" name="name"  th:field="*{name}">
 						  </div>
 						  <div class="mb-3">
 						    <label for="firstname" class="form-label">Prenom</label>
-						    <input type="text" class="form-control" id="firstname" name="firstname">
+						    <input type="text" class="form-control" id="firstname" name="firstname"  th:field="*{firstname}">
 						  </div>
 						  <div class="mb-3">
 						    <label for="email" class="form-label">Email</label>
@@ -28,13 +28,9 @@
 						  	<label  class="form-label">Cliquer sur la carte pour définir votre lieu par défaut</label>
 							<input type="hidden" class="form-control" id="longitude" name="longDefault" value="">
 							<input type="hidden" class="form-control" id="latitude" name="latDefault" value="">
-							<p>longitude : <span id="showLongitude"></span></p>
-							<p>latitude : <span id="showLatitude"></span></p>
+							<p>longitude : <span id="showLongitude"  th:text="*{longDefault}"></span></p>
+							<p>latitude : <span id="showLatitude"  th:text="*{latDefault}"></span></p>
 						</div>
-						<div class="mb-3 form-check">
-					    <input type="checkbox" class="form-check-input" id="role" name="role">
-					    <label class="form-check-label" for="role">Administrateur</label>
-					  </div>
 						
 						  <button type="submit" class="btn btn-primary">Submit</button>
 						</form>

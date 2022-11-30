@@ -43,6 +43,6 @@ public class RegisterController {
 	    	userServices.createUser(user);
 	    }
 		
-		return "redirect:/";
+		return "redirect:/login";
 	}
 }
