@@ -2,7 +2,7 @@
 	    
    					<div class="formulaire p-3">
    						<h1>Inscription</h1>
-						<form method="post" th:object="${user}">
+						<form method="post" th:action="@{/signup}" th:object="${user}">
 						  <div class="mb-3">
 						    <label for="name" class="form-label">Nom</label>
 						    <input type="text" class="form-control" id="name" name="name"  th:field="*{name}">

@@ -5,7 +5,7 @@
    			<div class="col">
    				<div class=p-3>
     				<h1>Nouvelle catégorie</h1>
-    				<form method="post"  th:object="${category}">
+    				<form method="post"  th:action="@{/add-category}" th:object="${category}">
 						<div class="mb-3">
 							<label for="name" class="form-label">nom de la catégorie</label>
 							<input type="text" class="form-control" id="name" name="name">

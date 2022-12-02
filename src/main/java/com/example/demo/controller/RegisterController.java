@@ -30,19 +30,18 @@ public class RegisterController {
 		//model.addAttribute("user", new User());
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
+			System.out.println(bindingResult.getFieldError());
+
 			return "user/add";
 		}
 		
 		if(userServices.findByEmail(user.getEmail()) != null) {
 	    	bindingResult.addError(new FieldError("friend","email","Cette adresse email existe déjà !"));
-	    	return ("user/add");
+			return ("user/add");
+
 	    }
 	
-	    else {
-		
-	    	userServices.createUser(user);
-	    }
-		
+		userServices.createUser(user);
 		return "redirect:/login";
 	}
 }

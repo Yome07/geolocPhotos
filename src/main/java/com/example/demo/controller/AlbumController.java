@@ -106,18 +106,18 @@ public class AlbumController {
 	
 		
 	//************EDIT
-	@GetMapping("/edit-album")
-	public String editAlbum(@RequestParam(value = "id", required = false) Long id,Model model) {
+	@GetMapping("/edit-album/{id}")
+	public String editAlbum(Model model, @PathVariable(value="id") Long id) {
 		
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
 		if (username != null) {
 			User user = new User();
 			user = userServices.findByEmail(username);
-			
-			
+
+
 		}
-		
+
 		if(id != null) {
 			Optional<Album> album = albumServices.getById(id);
 			if(album.isPresent()) {
@@ -129,33 +129,29 @@ public class AlbumController {
 		return "album/editAlbum";
 	}
 	
-	@PostMapping("/edit-album")
-	public String editAlbum(@Validated Album album, BindingResult bindingResult,  
-			@RequestParam("id") Optional<Long> id)  {
+	@PostMapping("/edit-album/{id}")
+	public String editAlbum(@Validated Album album, BindingResult bindingResult,
+							@PathVariable("id") long id)  {
 		
-		
-		
+
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.hasErrors());
-			
-
-			return "/album/addAlbum";
+			album.setId(id);
+			return "/album/editAlbum/{id}";
 		}
-		
-		
+
 		String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
 		if (username != null) {
 			User user = new User();
 			user = userServices.findByEmail(username);
-			
+
 			album.setUser(user);
-			
+
 			albumServices.createAlbum(album);
-			
-			
+
 			return "redirect:/my-albums";
-			
+
 		}
 		
 		return "home";

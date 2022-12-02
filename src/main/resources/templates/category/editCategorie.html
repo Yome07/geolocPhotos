@@ -3,7 +3,7 @@
 				<div class="formulaire p-3">
 					<h1>Modifier le nom de la catégorie</h1>
 
-					<form method="post" th:object="${categorie}">
+					<form method="post" th:action="@{/edit-category}" th:object="${categorie}">
 						
 						
 					  <div class="mb-3">

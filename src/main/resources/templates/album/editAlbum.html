@@ -3,7 +3,7 @@
 				<div class="formulaire p-3">
 					<h1>Modifier le nom de l’album</h1>
 
-					<form method="post" th:object="${album}">
+					<form method="post" th:action="@{/edit-album/{id} (id=${album.id}) }" th:object="${album}">
 
 
 					  <div class="mb-3">

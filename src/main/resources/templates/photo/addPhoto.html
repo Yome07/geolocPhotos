@@ -3,7 +3,7 @@
 				<div class="formulaire p-3">
 					<h1>Pour ajouter une photo, cliquer sur la carte</h1>
 
-					<form method="post" th:object="${photo}" enctype="multipart/form-data">
+					<form method="post" th:action="@{/add-photo}" th:object="${photo}" enctype="multipart/form-data">
 						<div class="mb-3">
 						  <label for="fileImage" class="form-label">Télécharger votre photo</label>
 						  <input class="form-control" type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg">
@@ -37,6 +37,7 @@
 					  <div class="mb-3">
 					  	<label for="album" class="form-label">Choisissez un album</label>
 						  <select class="form-select" name="album">
+							  <option>(aucun album)</option>
 							  <option th:each="album:${myAlbums}" th:value="${album.id}"
 	                th:text="${album.name}"></option>
 							</select>

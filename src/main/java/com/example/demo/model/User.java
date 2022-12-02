@@ -33,9 +33,10 @@ public class User {
 	private String oldEmail;
 
 	@NotNull(message = "le mot de passe ne peut être vide")
-	@Pattern(regexp = "^([a-zA-Z_0-9!@#$&*]){8,100}$",
-	message = "Le mot de passe doit contenir des minuscules, majuscules, des chiffres et des caractères spéciaux parmi !@#$&*")
-	@Length(min = 8, max = 100)
+	@Pattern(regexp = "^([a-z])$",
+	message = "Le mot de passe doit contenir des minuscules, majuscules, " +
+			"des chiffres et des caractères spéciaux parmi !@#$&*")
+//	@Length(min = 8, max = 100)
 	private String password;
 	
 	private float latDefault;
