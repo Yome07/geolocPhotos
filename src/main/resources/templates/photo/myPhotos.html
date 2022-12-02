@@ -62,7 +62,7 @@
 				    			'<p>Date : ' + [[${photo.date}]] + '</p>' +
 				    			'<p>' +	[[${photo.description}]] + '</p>' +
 				    			'<p>Album : ' + [[${photo.album} ? ${photo.album.name} : 'Inconnu']] + '</p>' +
-				    			'<p><a class="btn btn-info" href="' + [[@{/edit-photo(id=${photo.id}) }]] + '"> modifier </a>' +
+				    			'<p><a class="btn btn-info" href="' + [[@{/edit-photo/{id} (id=${photo.id}) }]] + '"> modifier </a>' +
 				    			'<a href="' + [[@{/my-photos/delete/{id} (id=${photo.id}) }]] + '">' +
 				    		    '<button type="button" class="btn btn-danger">Supprimer</button>' +
 				    			'</a></p>'

@@ -3,7 +3,7 @@
 				<div class="formulaire p-3">
 					<h1>Modifier les informations de votre photo</h1>
 
-					<form method="post" th:action="@{/edit-photo}" th:object="${photo}" enctype="multipart/form-data">
+					<form method="post" th:action="@{/edit-photo/{id} (id=${photo.id})}" th:object="${photo}" enctype="multipart/form-data">
 						
 						<div class="mb-3">
 							<img class="thumbnail" th:src="@{${photo.FileNameImagePath}}"/>
@@ -38,6 +38,7 @@
 					  <div class="mb-3">
 					  	<label for="album" class="form-label">Choisissez un album</label>
 						  <select class="form-select" name="album" th:field="*{album}">
+							  <option>(aucun album)</option>
 							  <option th:each="album:${myAlbums}" th:value="${album.id}"
 	                th:text="${album.name}"></option>
 							</select>

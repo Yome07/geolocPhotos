@@ -160,8 +160,8 @@ public class PhotoController {
 	
 		
 		//************EDIT
-		@GetMapping("/edit-photo")
-		public String editPhoto(@RequestParam(value = "id", required = false) Long id,Model model) {
+		@GetMapping("/edit-photo/{id}")
+		public String editPhoto(Model model, @PathVariable(value="id") Long id) {
 			
 			String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
@@ -188,17 +188,16 @@ public class PhotoController {
 			return "photo/editPhoto";
 		}
 		
-		@PostMapping("/edit-photo")
-		public String editPhoto(@Validated Photo photo, BindingResult bindingResult,  
-				@RequestParam("id") Optional<Long> id)  {
+		@PostMapping("/edit-photo/{id}")
+		public String editPhoto(@Validated Photo photo, BindingResult bindingResult,
+								@PathVariable("id") long id)  {
 			
 			
 			
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.hasErrors());
-				
-
-				return "photo/addPhoto";
+				photo.setId(id);
+				return "photo/editPhoto";
 			}
 			
 			

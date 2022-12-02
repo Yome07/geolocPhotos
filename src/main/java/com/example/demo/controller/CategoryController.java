@@ -115,7 +115,7 @@ public class CategoryController {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.hasErrors());
 				category.setId(id);
-				return "category/addCategory";
+				return "category/editCategory";
 			}
 
 			categoryServices.createCategory(category);
