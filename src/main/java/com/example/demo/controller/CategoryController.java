@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.model.User;
+import com.example.demo.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class CategoryController {
 	
 	@Autowired
 	private PhotoServices photoServices;
+
+	@Autowired
+	private UserServices userServices;
 	
 
 	@Autowired CategoryRepository categoryRepository;
@@ -83,9 +88,15 @@ public class CategoryController {
 	}
 	
 	//************EDIT
-		@GetMapping("/edit-category")
-		public String editCategory(@RequestParam(value = "id", required = false) Long id,Model model) {
-			
+		@GetMapping("/edit-category/{id}")
+		public String editCategory(Model model, @PathVariable(value="id") Long id) {
+			String username = ((UserLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+
+			if (username != null) {
+				User user = new User();
+				user = userServices.findByEmail(username);
+			}
+
 			if(id != null) {
 				Optional<Category> category = categoryServices.getById(id);
 				if(category.isPresent()) {
@@ -97,24 +108,18 @@ public class CategoryController {
 			return "category/editCategory";
 		}
 		
-		@PostMapping("/edit-category")
+		@PostMapping("/edit-category/{id}")
 		public String editCategory(@Validated Category category, BindingResult bindingResult,
-				@RequestParam("id") Optional<Long> id)  {
-			
-			
-			
+								   @PathVariable("id") long id)  {
+
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.hasErrors());
-				
-
+				category.setId(id);
 				return "category/addCategory";
 			}
-			
 
-			
 			categoryServices.createCategory(category);
-			
-			
+
 			return "redirect:/list-categories";
 		}	
 		
