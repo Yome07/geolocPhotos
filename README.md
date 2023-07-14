@@ -15,4 +15,4 @@ Les technologies utilisées sont :
 - Bibliothèque Leaflet pour l’affichage de la carte
 - HTML, CSS
 
-Ce projet a fait l’objet d’un mémoire : 
+Ce projet a fait l’objet d’un mémoire : [rapport de certification de la formation CDA](Rapport certification CDA.pdf)
